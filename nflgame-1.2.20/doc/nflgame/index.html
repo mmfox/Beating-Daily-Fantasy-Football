@@ -1,0 +1,2239 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>nflgame API documentation</title>
+    <meta name="description" content="nflgame is an API to retrieve and read NFL Game Center JSON data.
+It can work with real-time data, w..." />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#nflgame.NoPlayers">NoPlayers</a></li>
+    <li class="mono"><a href="#nflgame.VERSION">VERSION</a></li>
+    <li class="mono"><a href="#nflgame.players">players</a></li>
+    <li class="mono"><a href="#nflgame.teams">teams</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#nflgame.combine">combine</a></li>
+    <li class="mono"><a href="#nflgame.combine_game_stats">combine_game_stats</a></li>
+    <li class="mono"><a href="#nflgame.combine_max_stats">combine_max_stats</a></li>
+    <li class="mono"><a href="#nflgame.combine_play_stats">combine_play_stats</a></li>
+    <li class="mono"><a href="#nflgame.combine_plays">combine_plays</a></li>
+    <li class="mono"><a href="#nflgame.find">find</a></li>
+    <li class="mono"><a href="#nflgame.games">games</a></li>
+    <li class="mono"><a href="#nflgame.games_gen">games_gen</a></li>
+    <li class="mono"><a href="#nflgame.one">one</a></li>
+    <li class="mono"><a href="#nflgame.standard_team">standard_team</a></li>
+  </ul>
+
+    </li>
+
+
+    <li class="set"><h3><a href="#header-submodules">Sub-modules</a></h3>
+      <ul>
+        <li class="mono"><a href="alert.m.html">nflgame.alert</a></li>
+        <li class="mono"><a href="game.m.html">nflgame.game</a></li>
+        <li class="mono"><a href="live.m.html">nflgame.live</a></li>
+        <li class="mono"><a href="player.m.html">nflgame.player</a></li>
+        <li class="mono"><a href="sched.m.html">nflgame.sched</a></li>
+        <li class="mono"><a href="seq.m.html">nflgame.seq</a></li>
+        <li class="mono"><a href="statmap.m.html">nflgame.statmap</a></li>
+        <li class="mono"><a href="update_players.m.html">nflgame.update_players</a></li>
+        <li class="mono"><a href="update_sched.m.html">nflgame.update_sched</a></li>
+        <li class="mono"><a href="version.m.html">nflgame.version</a></li>
+      </ul>
+    </li>
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">nflgame</span> module</h1>
+  <p>nflgame is an API to retrieve and read NFL Game Center JSON data.
+It can work with real-time data, which can be used for fantasy football.</p>
+<p>nflgame works by parsing the same JSON data that powers NFL.com's live
+GameCenter. Therefore, nflgame can be used to report game statistics while
+a game is being played.</p>
+<p>The package comes pre-loaded with game data from every pre- and regular
+season game from 2009 up until the present (I try to update it every week).
+Therefore, querying such data does not actually ping NFL.com.</p>
+<p>However, if you try to search for data in a game that is being currently
+played, the JSON data will be downloaded from NFL.com at each request (so be
+careful not to inspect for data too many times while a game is being played).
+If you ask for data for a particular game that hasn't been cached to disk
+but is no longer being played, it will be automatically cached to disk
+so that no further downloads are required.</p>
+<p>Here's a quick teaser to find the top 5 running backs by rushing yards in the
+first week of the 2013 season:</p>
+<pre><code>#!python
+import nflgame
+
+games = nflgame.games(2013, week=1)
+players = nflgame.combine_game_stats(games)
+for p in players.rushing().sort('rushing_yds').limit(5):
+    msg = '%s %d carries for %d yards and %d TDs'
+    print msg % (p, p.rushing_att, p.rushing_yds, p.rushing_tds)
+</code></pre>
+<p>And the output is:</p>
+<pre><code>L.McCoy 31 carries for 184 yards and 1 TDs
+T.Pryor 13 carries for 112 yards and 0 TDs
+S.Vereen 14 carries for 101 yards and 0 TDs
+A.Peterson 18 carries for 93 yards and 2 TDs
+R.Bush 21 carries for 90 yards and 0 TDs
+</code></pre>
+<p>Or you could find the top 5 passing plays in the same time period:</p>
+<pre><code>#!python
+import nflgame
+
+games = nflgame.games(2013, week=1)
+plays = nflgame.combine_plays(games)
+for p in plays.sort('passing_yds').limit(5):
+    print p
+</code></pre>
+<p>And the output is:</p>
+<pre><code>(DEN, DEN 22, Q4, 3 and 8) (4:42) (Shotgun) P.Manning pass
+short left to D.Thomas for 78 yards, TOUCHDOWN. Penalty on
+BAL-E.Dumervil, Defensive Offside, declined.
+(DET, DET 23, Q3, 3 and 7) (5:58) (Shotgun) M.Stafford pass short
+middle to R.Bush for 77 yards, TOUCHDOWN.
+(NYG, NYG 30, Q2, 1 and 10) (2:01) (No Huddle, Shotgun) E.Manning
+pass deep left to V.Cruz for 70 yards, TOUCHDOWN. Pass complete on
+a fly pattern.
+(NO, NO 24, Q2, 2 and 6) (5:11) (Shotgun) D.Brees pass deep left to
+K.Stills to ATL 9 for 67 yards (R.McClain; R.Alford). Pass 24, YAC
+43
+(NYG, NYG 20, Q1, 1 and 10) (13:04) E.Manning pass short middle
+to H.Nicks pushed ob at DAL 23 for 57 yards (M.Claiborne). Pass
+complete on a slant pattern.
+</code></pre>
+<p>If you aren't a programmer, then the
+<a href="http://goo.gl/y05fVj">tutorial for non programmers</a> is for you.</p>
+<p>If you need help, please come visit us at IRC/FreeNode on channel <code>#nflgame</code>.
+If you've never used IRC before, then you can
+<a href="http://webchat.freenode.net/?channels=%23nflgame">use a web client</a>.
+(Enter any nickname you like, make sure the channel is <code>#nflgame</code>, fill in
+the captcha and hit connect.)</p>
+<p>Failing IRC, the second fastest way to get help is to
+<a href="https://github.com/BurntSushi/nflgame/issues/new">open a new issue on the
+tracker</a>.
+There are several active contributors to nflgame that watch the issue tracker.
+We tend to respond fairly quickly!</p>
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame" class="source">
+    <pre><code>"""
+nflgame is an API to retrieve and read NFL Game Center JSON data.
+It can work with real-time data, which can be used for fantasy football.
+
+nflgame works by parsing the same JSON data that powers NFL.com's live
+GameCenter. Therefore, nflgame can be used to report game statistics while
+a game is being played.
+
+The package comes pre-loaded with game data from every pre- and regular
+season game from 2009 up until the present (I try to update it every week).
+Therefore, querying such data does not actually ping NFL.com.
+
+However, if you try to search for data in a game that is being currently
+played, the JSON data will be downloaded from NFL.com at each request (so be
+careful not to inspect for data too many times while a game is being played).
+If you ask for data for a particular game that hasn't been cached to disk
+but is no longer being played, it will be automatically cached to disk
+so that no further downloads are required.
+
+Here's a quick teaser to find the top 5 running backs by rushing yards in the
+first week of the 2013 season:
+
+    #!python
+    import nflgame
+
+    games = nflgame.games(2013, week=1)
+    players = nflgame.combine_game_stats(games)
+    for p in players.rushing().sort('rushing_yds').limit(5):
+        msg = '%s %d carries for %d yards and %d TDs'
+        print msg % (p, p.rushing_att, p.rushing_yds, p.rushing_tds)
+
+And the output is:
+
+    L.McCoy 31 carries for 184 yards and 1 TDs
+    T.Pryor 13 carries for 112 yards and 0 TDs
+    S.Vereen 14 carries for 101 yards and 0 TDs
+    A.Peterson 18 carries for 93 yards and 2 TDs
+    R.Bush 21 carries for 90 yards and 0 TDs
+
+Or you could find the top 5 passing plays in the same time period:
+
+    #!python
+    import nflgame
+
+    games = nflgame.games(2013, week=1)
+    plays = nflgame.combine_plays(games)
+    for p in plays.sort('passing_yds').limit(5):
+        print p
+
+And the output is:
+
+    (DEN, DEN 22, Q4, 3 and 8) (4:42) (Shotgun) P.Manning pass
+    short left to D.Thomas for 78 yards, TOUCHDOWN. Penalty on
+    BAL-E.Dumervil, Defensive Offside, declined.
+    (DET, DET 23, Q3, 3 and 7) (5:58) (Shotgun) M.Stafford pass short
+    middle to R.Bush for 77 yards, TOUCHDOWN.
+    (NYG, NYG 30, Q2, 1 and 10) (2:01) (No Huddle, Shotgun) E.Manning
+    pass deep left to V.Cruz for 70 yards, TOUCHDOWN. Pass complete on
+    a fly pattern.
+    (NO, NO 24, Q2, 2 and 6) (5:11) (Shotgun) D.Brees pass deep left to
+    K.Stills to ATL 9 for 67 yards (R.McClain; R.Alford). Pass 24, YAC
+    43
+    (NYG, NYG 20, Q1, 1 and 10) (13:04) E.Manning pass short middle
+    to H.Nicks pushed ob at DAL 23 for 57 yards (M.Claiborne). Pass
+    complete on a slant pattern.
+
+If you aren't a programmer, then the
+[tutorial for non programmers](http://goo.gl/y05fVj) is for you.
+
+If you need help, please come visit us at IRC/FreeNode on channel `#nflgame`.
+If you've never used IRC before, then you can
+[use a web client](http://webchat.freenode.net/?channels=%23nflgame).
+(Enter any nickname you like, make sure the channel is `#nflgame`, fill in
+the captcha and hit connect.)
+
+Failing IRC, the second fastest way to get help is to
+[open a new issue on the
+tracker](https://github.com/BurntSushi/nflgame/issues/new).
+There are several active contributors to nflgame that watch the issue tracker.
+We tend to respond fairly quickly!
+"""
+
+try:
+    from collections import OrderedDict
+except:
+    from ordereddict import OrderedDict  # from PyPI
+import itertools
+
+import sys
+
+if sys.version_info[0] != 2 or sys.version_info[1] < 6:
+    print("nflgame requires Python 2.6+ and does not yet work with Python 3")
+    print("You are running Python version {}.{}".format(
+        sys.version_info.major, sys.version_info.minor))
+    sys.exit(1)
+
+import nflgame.game  # noqa
+import nflgame.live  # noqa
+import nflgame.player  # noqa
+import nflgame.sched  # noqa
+import nflgame.seq  # noqaj
+from nflgame.version import __version__  # noqa
+
+assert OrderedDict  # Asserting the import for static analysis.
+VERSION = __version__  # Deprecated. Backwards compatibility.
+
+NoPlayers = nflgame.seq.GenPlayerStats(None)
+"""
+NoPlayers corresponds to the identity element of a Players sequences.
+
+Namely, adding it to any other Players sequence has no effect.
+"""
+
+players = nflgame.player._create_players()
+"""
+A dict of all players and meta information about each player keyed
+by GSIS ID. (The identifiers used by NFL.com GameCenter.)
+"""
+
+teams = [
+    ['ARI', 'Arizona', 'Cardinals', 'Arizona Cardinals'],
+    ['ATL', 'Atlanta', 'Falcons', 'Atlanta Falcons'],
+    ['BAL', 'Baltimore', 'Ravens', 'Baltimore Ravens'],
+    ['BUF', 'Buffalo', 'Bills', 'Buffalo Bills'],
+    ['CAR', 'Carolina', 'Panthers', 'Carolina Panthers'],
+    ['CHI', 'Chicago', 'Bears', 'Chicago Bears'],
+    ['CIN', 'Cincinnati', 'Bengals', 'Cincinnati Bengals'],
+    ['CLE', 'Cleveland', 'Browns', 'Cleveland Browns'],
+    ['DAL', 'Dallas', 'Cowboys', 'Dallas Cowboys'],
+    ['DEN', 'Denver', 'Broncos', 'Denver Broncos'],
+    ['DET', 'Detroit', 'Lions', 'Detroit Lions'],
+    ['GB', 'Green Bay', 'Packers', 'Green Bay Packers', 'G.B.', 'GNB'],
+    ['HOU', 'Houston', 'Texans', 'Houston Texans'],
+    ['IND', 'Indianapolis', 'Colts', 'Indianapolis Colts'],
+    ['JAC', 'Jacksonville', 'Jaguars', 'Jacksonville Jaguars', 'JAX'],
+    ['KC', 'Kansas City', 'Chiefs', 'Kansas City Chiefs', 'K.C.', 'KAN'],
+    ['LA', 'Los Angeles', 'Rams', 'Los Angeles Rams', 'L.A.'],
+    ['MIA', 'Miami', 'Dolphins', 'Miami Dolphins'],
+    ['MIN', 'Minnesota', 'Vikings', 'Minnesota Vikings'],
+    ['NE', 'New England', 'Patriots', 'New England Patriots', 'N.E.', 'NWE'],
+    ['NO', 'New Orleans', 'Saints', 'New Orleans Saints', 'N.O.', 'NOR'],
+    ['NYG', 'Giants', 'New York Giants', 'N.Y.G.'],
+    ['NYJ', 'Jets', 'New York Jets', 'N.Y.J.'],
+    ['OAK', 'Oakland', 'Raiders', 'Oakland Raiders'],
+    ['PHI', 'Philadelphia', 'Eagles', 'Philadelphia Eagles'],
+    ['PIT', 'Pittsburgh', 'Steelers', 'Pittsburgh Steelers'],
+    ['SD', 'San Diego', 'Chargers', 'San Diego Chargers', 'S.D.', 'SDG'],
+    ['SEA', 'Seattle', 'Seahawks', 'Seattle Seahawks'],
+    ['SF', 'San Francisco', '49ers', 'San Francisco 49ers', 'S.F.', 'SFO'],
+    ['STL', 'St. Louis', 'Rams', 'St. Louis Rams', 'S.T.L.'],
+    ['TB', 'Tampa Bay', 'Buccaneers', 'Tampa Bay Buccaneers', 'T.B.', 'TAM'],
+    ['TEN', 'Tennessee', 'Titans', 'Tennessee Titans'],
+    ['WAS', 'Washington', 'Redskins', 'Washington Redskins', 'WSH'],
+]
+"""
+A list of all teams. Each item is a list of different ways to
+describe a team. (i.e., JAC, JAX, Jacksonville, Jaguars, etc.).
+The first item in each list is always the standard NFL.com
+team abbreviation (two or three letters).
+"""
+
+
+def find(name, team=None):
+    """
+    Finds a player (or players) with a name matching (case insensitive)
+    name and returns them as a list.
+
+    If team is not None, it is used as an additional search constraint.
+    """
+    hits = []
+    for player in players.itervalues():
+        if player.name.lower() == name.lower():
+            if team is None or team.lower() == player.team.lower():
+                hits.append(player)
+    return hits
+
+
+def standard_team(team):
+    """
+    Returns a standard abbreviation when team corresponds to a team in
+    nflgame.teams (case insensitive).  All known variants of a team name are
+    searched. If no team is found, None is returned.
+    """
+    team = team.lower()
+    for variants in teams:
+        for variant in variants:
+            if team == variant.lower():
+                return variants[0]
+    return None
+
+
+def games(year, week=None, home=None, away=None, kind='REG', started=False):
+    """
+    games returns a list of all games matching the given criteria. Each
+    game can then be queried for player statistics and information about
+    the game itself (score, winner, scoring plays, etc.).
+
+    As a special case, if the home and away teams are set to the same team,
+    then all games where that team played are returned.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    Note that if a game's JSON data is not cached to disk, it is retrieved
+    from the NFL web site. A game's JSON data is *only* cached to disk once
+    the game is over, so be careful with the number of times you call this
+    while a game is going on. (i.e., don't piss off NFL.com.)
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    return list(games_gen(year, week, home, away, kind, started))
+
+
+def games_gen(year, week=None, home=None, away=None,
+              kind='REG', started=False):
+    """
+    games returns a generator of all games matching the given criteria. Each
+    game can then be queried for player statistics and information about
+    the game itself (score, winner, scoring plays, etc.).
+
+    As a special case, if the home and away teams are set to the same team,
+    then all games where that team played are returned.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    Note that if a game's JSON data is not cached to disk, it is retrieved
+    from the NFL web site. A game's JSON data is *only* cached to disk once
+    the game is over, so be careful with the number of times you call this
+    while a game is going on. (i.e., don't piss off NFL.com.)
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    infos = _search_schedule(year, week, home, away, kind, started)
+    if not infos:
+        return None
+
+    def gen():
+        for info in infos:
+            g = nflgame.game.Game(info['eid'])
+            if g is None:
+                continue
+            yield g
+    return gen()
+
+
+def one(year, week, home, away, kind='REG', started=False):
+    """
+    one returns a single game matching the given criteria. The
+    game can then be queried for player statistics and information about
+    the game itself (score, winner, scoring plays, etc.).
+
+    one returns either a single game or no games. If there are multiple games
+    matching the given criteria, an assertion is raised.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    Note that if a game's JSON data is not cached to disk, it is retrieved
+    from the NFL web site. A game's JSON data is *only* cached to disk once
+    the game is over, so be careful with the number of times you call this
+    while a game is going on. (i.e., don't piss off NFL.com.)
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    infos = _search_schedule(year, week, home, away, kind, started)
+    if not infos:
+        return None
+    assert len(infos) == 1, 'More than one game matches the given criteria.'
+    return nflgame.game.Game(infos[0]['eid'])
+
+
+def combine(games, plays=False):
+    """
+    DEPRECATED. Please use one of nflgame.combine_{game,play,max}_stats
+    instead.
+
+    Combines a list of games into one big player sequence containing game
+    level statistics.
+
+    This can be used, for example, to get PlayerStat objects corresponding to
+    statistics across an entire week, some number of weeks or an entire season.
+
+    If the plays parameter is True, then statistics will be dervied from
+    play by play data. This mechanism is slower but will contain more detailed
+    statistics like receiver targets, yards after the catch, punt and field
+    goal blocks, etc.
+    """
+    if plays:
+        return combine_play_stats(games)
+    else:
+        return combine_game_stats(games)
+
+
+def combine_game_stats(games):
+    """
+    Combines a list of games into one big player sequence containing game
+    level statistics.
+
+    This can be used, for example, to get GamePlayerStats objects corresponding
+    to statistics across an entire week, some number of weeks or an entire
+    season.
+    """
+    return reduce(lambda ps1, ps2: ps1 + ps2,
+                  [g.players for g in games if g is not None])
+
+
+def combine_play_stats(games):
+    """
+    Combines a list of games into one big player sequence containing play
+    level statistics.
+
+    This can be used, for example, to get PlayPlayerStats objects corresponding
+    to statistics across an entire week, some number of weeks or an entire
+    season.
+
+    This function should be used in lieu of combine_game_stats when more
+    detailed statistics such as receiver targets, yards after the catch and
+    punt/FG blocks are needed.
+
+    N.B. Since this combines *all* play data, this function may take a while
+    to complete depending on the number of games passed in.
+    """
+    return reduce(lambda p1, p2: p1 + p2,
+                  [g.drives.players() for g in games if g is not None])
+
+
+def combine_max_stats(games):
+    """
+    Combines a list of games into one big player sequence containing maximum
+    statistics based on game and play level statistics.
+
+    This can be used, for example, to get GamePlayerStats objects corresponding
+    to statistics across an entire week, some number of weeks or an entire
+    season.
+
+    This function should be used in lieu of combine_game_stats or
+    combine_play_stats when the best possible accuracy is desired.
+    """
+    return reduce(lambda a, b: a + b,
+                  [g.max_player_stats() for g in games if g is not None])
+
+
+def combine_plays(games):
+    """
+    Combines a list of games into one big play generator that can be searched
+    as if it were a single game.
+    """
+    chain = itertools.chain(*[g.drives.plays() for g in games])
+    return nflgame.seq.GenPlays(chain)
+
+
+def _search_schedule(year, week=None, home=None, away=None, kind='REG',
+                     started=False):
+    """
+    Searches the schedule to find the game identifiers matching the criteria
+    given.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    infos = []
+    for info in nflgame.sched.games.itervalues():
+        y, t, w = info['year'], info['season_type'], info['week']
+        h, a = info['home'], info['away']
+        if year is not None:
+            if isinstance(year, list) and y not in year:
+                continue
+            if not isinstance(year, list) and y != year:
+                continue
+        if week is not None:
+            if isinstance(week, list) and w not in week:
+                continue
+            if not isinstance(week, list) and w != week:
+                continue
+        if home is not None and away is not None and home == away:
+            if h != home and a != home:
+                continue
+        else:
+            if home is not None and h != home:
+                continue
+            if away is not None and a != away:
+                continue
+        if t != kind:
+            continue
+        if started:
+            gametime = nflgame.live._game_datetime(info)
+            now = nflgame.live._now()
+            if gametime > now and (gametime - now).total_seconds() > 300:
+                continue
+        infos.append(info)
+    return infos
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+    <h2 class="section-title" id="header-variables">Module variables</h2>
+      <div class="item">
+      <p id="nflgame.NoPlayers" class="name">var <span class="ident">NoPlayers</span></p>
+      
+  
+    <div class="desc"><p>NoPlayers corresponds to the identity element of a Players sequences.</p>
+<p>Namely, adding it to any other Players sequence has no effect.</p></div>
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="nflgame.VERSION" class="name">var <span class="ident">VERSION</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="nflgame.players" class="name">var <span class="ident">players</span></p>
+      
+  
+    <div class="desc"><p>A dict of all players and meta information about each player keyed
+by GSIS ID. (The identifiers used by NFL.com GameCenter.)</p></div>
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="nflgame.teams" class="name">var <span class="ident">teams</span></p>
+      
+  
+    <div class="desc"><p>A list of all teams. Each item is a list of different ways to
+describe a team. (i.e., JAC, JAX, Jacksonville, Jaguars, etc.).
+The first item in each list is always the standard NFL.com
+team abbreviation (two or three letters).</p></div>
+  <div class="source_cont">
+</div>
+
+      </div>
+
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="nflgame.combine">
+    <p>def <span class="ident">combine</span>(</p><p>games, plays=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>DEPRECATED. Please use one of nflgame.combine_{game,play,max}_stats
+instead.</p>
+<p>Combines a list of games into one big player sequence containing game
+level statistics.</p>
+<p>This can be used, for example, to get PlayerStat objects corresponding to
+statistics across an entire week, some number of weeks or an entire season.</p>
+<p>If the plays parameter is True, then statistics will be dervied from
+play by play data. This mechanism is slower but will contain more detailed
+statistics like receiver targets, yards after the catch, punt and field
+goal blocks, etc.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.combine', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.combine" class="source">
+    <pre><code>def combine(games, plays=False):
+    """
+    DEPRECATED. Please use one of nflgame.combine_{game,play,max}_stats
+    instead.
+
+    Combines a list of games into one big player sequence containing game
+    level statistics.
+
+    This can be used, for example, to get PlayerStat objects corresponding to
+    statistics across an entire week, some number of weeks or an entire season.
+
+    If the plays parameter is True, then statistics will be dervied from
+    play by play data. This mechanism is slower but will contain more detailed
+    statistics like receiver targets, yards after the catch, punt and field
+    goal blocks, etc.
+    """
+    if plays:
+        return combine_play_stats(games)
+    else:
+        return combine_game_stats(games)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.combine_game_stats">
+    <p>def <span class="ident">combine_game_stats</span>(</p><p>games)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Combines a list of games into one big player sequence containing game
+level statistics.</p>
+<p>This can be used, for example, to get GamePlayerStats objects corresponding
+to statistics across an entire week, some number of weeks or an entire
+season.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.combine_game_stats', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.combine_game_stats" class="source">
+    <pre><code>def combine_game_stats(games):
+    """
+    Combines a list of games into one big player sequence containing game
+    level statistics.
+
+    This can be used, for example, to get GamePlayerStats objects corresponding
+    to statistics across an entire week, some number of weeks or an entire
+    season.
+    """
+    return reduce(lambda ps1, ps2: ps1 + ps2,
+                  [g.players for g in games if g is not None])
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.combine_max_stats">
+    <p>def <span class="ident">combine_max_stats</span>(</p><p>games)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Combines a list of games into one big player sequence containing maximum
+statistics based on game and play level statistics.</p>
+<p>This can be used, for example, to get GamePlayerStats objects corresponding
+to statistics across an entire week, some number of weeks or an entire
+season.</p>
+<p>This function should be used in lieu of combine_game_stats or
+combine_play_stats when the best possible accuracy is desired.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.combine_max_stats', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.combine_max_stats" class="source">
+    <pre><code>def combine_max_stats(games):
+    """
+    Combines a list of games into one big player sequence containing maximum
+    statistics based on game and play level statistics.
+
+    This can be used, for example, to get GamePlayerStats objects corresponding
+    to statistics across an entire week, some number of weeks or an entire
+    season.
+
+    This function should be used in lieu of combine_game_stats or
+    combine_play_stats when the best possible accuracy is desired.
+    """
+    return reduce(lambda a, b: a + b,
+                  [g.max_player_stats() for g in games if g is not None])
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.combine_play_stats">
+    <p>def <span class="ident">combine_play_stats</span>(</p><p>games)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Combines a list of games into one big player sequence containing play
+level statistics.</p>
+<p>This can be used, for example, to get PlayPlayerStats objects corresponding
+to statistics across an entire week, some number of weeks or an entire
+season.</p>
+<p>This function should be used in lieu of combine_game_stats when more
+detailed statistics such as receiver targets, yards after the catch and
+punt/FG blocks are needed.</p>
+<p>N.B. Since this combines <em>all</em> play data, this function may take a while
+to complete depending on the number of games passed in.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.combine_play_stats', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.combine_play_stats" class="source">
+    <pre><code>def combine_play_stats(games):
+    """
+    Combines a list of games into one big player sequence containing play
+    level statistics.
+
+    This can be used, for example, to get PlayPlayerStats objects corresponding
+    to statistics across an entire week, some number of weeks or an entire
+    season.
+
+    This function should be used in lieu of combine_game_stats when more
+    detailed statistics such as receiver targets, yards after the catch and
+    punt/FG blocks are needed.
+
+    N.B. Since this combines *all* play data, this function may take a while
+    to complete depending on the number of games passed in.
+    """
+    return reduce(lambda p1, p2: p1 + p2,
+                  [g.drives.players() for g in games if g is not None])
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.combine_plays">
+    <p>def <span class="ident">combine_plays</span>(</p><p>games)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Combines a list of games into one big play generator that can be searched
+as if it were a single game.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.combine_plays', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.combine_plays" class="source">
+    <pre><code>def combine_plays(games):
+    """
+    Combines a list of games into one big play generator that can be searched
+    as if it were a single game.
+    """
+    chain = itertools.chain(*[g.drives.plays() for g in games])
+    return nflgame.seq.GenPlays(chain)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.find">
+    <p>def <span class="ident">find</span>(</p><p>name, team=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Finds a player (or players) with a name matching (case insensitive)
+name and returns them as a list.</p>
+<p>If team is not None, it is used as an additional search constraint.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.find', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.find" class="source">
+    <pre><code>def find(name, team=None):
+    """
+    Finds a player (or players) with a name matching (case insensitive)
+    name and returns them as a list.
+
+    If team is not None, it is used as an additional search constraint.
+    """
+    hits = []
+    for player in players.itervalues():
+        if player.name.lower() == name.lower():
+            if team is None or team.lower() == player.team.lower():
+                hits.append(player)
+    return hits
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.games">
+    <p>def <span class="ident">games</span>(</p><p>year, week=None, home=None, away=None, kind=&#39;REG&#39;, started=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>games returns a list of all games matching the given criteria. Each
+game can then be queried for player statistics and information about
+the game itself (score, winner, scoring plays, etc.).</p>
+<p>As a special case, if the home and away teams are set to the same team,
+then all games where that team played are returned.</p>
+<p>The kind parameter specifies whether to fetch preseason, regular season
+or postseason games. Valid values are PRE, REG and POST.</p>
+<p>The week parameter is relative to the value of the kind parameter, and
+may be set to a list of week numbers.
+In the regular season, the week parameter corresponds to the normal
+week numbers 1 through 17. Similarly in the preseason, valid week numbers
+are 1 through 4. In the post season, the week number corresponds to the
+numerical round of the playoffs. So the wild card round is week 1,
+the divisional round is week 2, the conference round is week 3
+and the Super Bowl is week 4.</p>
+<p>The year parameter specifies the season, and not necessarily the actual
+year that a game was played in. For example, a Super Bowl taking place
+in the year 2011 actually belongs to the 2010 season. Also, the year
+parameter may be set to a list of seasons just like the week parameter.</p>
+<p>Note that if a game's JSON data is not cached to disk, it is retrieved
+from the NFL web site. A game's JSON data is <em>only</em> cached to disk once
+the game is over, so be careful with the number of times you call this
+while a game is going on. (i.e., don't piss off NFL.com.)</p>
+<p>If started is True, then only games that have already started (or are
+about to start in less than 5 minutes) will be returned. Note that the
+started parameter requires pytz to be installed. This is useful when
+you only want to collect stats from games that have JSON data available
+(as opposed to waiting for a 404 error from NFL.com).</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.games', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.games" class="source">
+    <pre><code>def games(year, week=None, home=None, away=None, kind='REG', started=False):
+    """
+    games returns a list of all games matching the given criteria. Each
+    game can then be queried for player statistics and information about
+    the game itself (score, winner, scoring plays, etc.).
+
+    As a special case, if the home and away teams are set to the same team,
+    then all games where that team played are returned.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    Note that if a game's JSON data is not cached to disk, it is retrieved
+    from the NFL web site. A game's JSON data is *only* cached to disk once
+    the game is over, so be careful with the number of times you call this
+    while a game is going on. (i.e., don't piss off NFL.com.)
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    return list(games_gen(year, week, home, away, kind, started))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.games_gen">
+    <p>def <span class="ident">games_gen</span>(</p><p>year, week=None, home=None, away=None, kind=&#39;REG&#39;, started=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>games returns a generator of all games matching the given criteria. Each
+game can then be queried for player statistics and information about
+the game itself (score, winner, scoring plays, etc.).</p>
+<p>As a special case, if the home and away teams are set to the same team,
+then all games where that team played are returned.</p>
+<p>The kind parameter specifies whether to fetch preseason, regular season
+or postseason games. Valid values are PRE, REG and POST.</p>
+<p>The week parameter is relative to the value of the kind parameter, and
+may be set to a list of week numbers.
+In the regular season, the week parameter corresponds to the normal
+week numbers 1 through 17. Similarly in the preseason, valid week numbers
+are 1 through 4. In the post season, the week number corresponds to the
+numerical round of the playoffs. So the wild card round is week 1,
+the divisional round is week 2, the conference round is week 3
+and the Super Bowl is week 4.</p>
+<p>The year parameter specifies the season, and not necessarily the actual
+year that a game was played in. For example, a Super Bowl taking place
+in the year 2011 actually belongs to the 2010 season. Also, the year
+parameter may be set to a list of seasons just like the week parameter.</p>
+<p>Note that if a game's JSON data is not cached to disk, it is retrieved
+from the NFL web site. A game's JSON data is <em>only</em> cached to disk once
+the game is over, so be careful with the number of times you call this
+while a game is going on. (i.e., don't piss off NFL.com.)</p>
+<p>If started is True, then only games that have already started (or are
+about to start in less than 5 minutes) will be returned. Note that the
+started parameter requires pytz to be installed. This is useful when
+you only want to collect stats from games that have JSON data available
+(as opposed to waiting for a 404 error from NFL.com).</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.games_gen', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.games_gen" class="source">
+    <pre><code>def games_gen(year, week=None, home=None, away=None,
+              kind='REG', started=False):
+    """
+    games returns a generator of all games matching the given criteria. Each
+    game can then be queried for player statistics and information about
+    the game itself (score, winner, scoring plays, etc.).
+
+    As a special case, if the home and away teams are set to the same team,
+    then all games where that team played are returned.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    Note that if a game's JSON data is not cached to disk, it is retrieved
+    from the NFL web site. A game's JSON data is *only* cached to disk once
+    the game is over, so be careful with the number of times you call this
+    while a game is going on. (i.e., don't piss off NFL.com.)
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    infos = _search_schedule(year, week, home, away, kind, started)
+    if not infos:
+        return None
+
+    def gen():
+        for info in infos:
+            g = nflgame.game.Game(info['eid'])
+            if g is None:
+                continue
+            yield g
+    return gen()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.one">
+    <p>def <span class="ident">one</span>(</p><p>year, week, home, away, kind=&#39;REG&#39;, started=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>one returns a single game matching the given criteria. The
+game can then be queried for player statistics and information about
+the game itself (score, winner, scoring plays, etc.).</p>
+<p>one returns either a single game or no games. If there are multiple games
+matching the given criteria, an assertion is raised.</p>
+<p>The kind parameter specifies whether to fetch preseason, regular season
+or postseason games. Valid values are PRE, REG and POST.</p>
+<p>The week parameter is relative to the value of the kind parameter, and
+may be set to a list of week numbers.
+In the regular season, the week parameter corresponds to the normal
+week numbers 1 through 17. Similarly in the preseason, valid week numbers
+are 1 through 4. In the post season, the week number corresponds to the
+numerical round of the playoffs. So the wild card round is week 1,
+the divisional round is week 2, the conference round is week 3
+and the Super Bowl is week 4.</p>
+<p>The year parameter specifies the season, and not necessarily the actual
+year that a game was played in. For example, a Super Bowl taking place
+in the year 2011 actually belongs to the 2010 season. Also, the year
+parameter may be set to a list of seasons just like the week parameter.</p>
+<p>Note that if a game's JSON data is not cached to disk, it is retrieved
+from the NFL web site. A game's JSON data is <em>only</em> cached to disk once
+the game is over, so be careful with the number of times you call this
+while a game is going on. (i.e., don't piss off NFL.com.)</p>
+<p>If started is True, then only games that have already started (or are
+about to start in less than 5 minutes) will be returned. Note that the
+started parameter requires pytz to be installed. This is useful when
+you only want to collect stats from games that have JSON data available
+(as opposed to waiting for a 404 error from NFL.com).</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.one', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.one" class="source">
+    <pre><code>def one(year, week, home, away, kind='REG', started=False):
+    """
+    one returns a single game matching the given criteria. The
+    game can then be queried for player statistics and information about
+    the game itself (score, winner, scoring plays, etc.).
+
+    one returns either a single game or no games. If there are multiple games
+    matching the given criteria, an assertion is raised.
+
+    The kind parameter specifies whether to fetch preseason, regular season
+    or postseason games. Valid values are PRE, REG and POST.
+
+    The week parameter is relative to the value of the kind parameter, and
+    may be set to a list of week numbers.
+    In the regular season, the week parameter corresponds to the normal
+    week numbers 1 through 17. Similarly in the preseason, valid week numbers
+    are 1 through 4. In the post season, the week number corresponds to the
+    numerical round of the playoffs. So the wild card round is week 1,
+    the divisional round is week 2, the conference round is week 3
+    and the Super Bowl is week 4.
+
+    The year parameter specifies the season, and not necessarily the actual
+    year that a game was played in. For example, a Super Bowl taking place
+    in the year 2011 actually belongs to the 2010 season. Also, the year
+    parameter may be set to a list of seasons just like the week parameter.
+
+    Note that if a game's JSON data is not cached to disk, it is retrieved
+    from the NFL web site. A game's JSON data is *only* cached to disk once
+    the game is over, so be careful with the number of times you call this
+    while a game is going on. (i.e., don't piss off NFL.com.)
+
+    If started is True, then only games that have already started (or are
+    about to start in less than 5 minutes) will be returned. Note that the
+    started parameter requires pytz to be installed. This is useful when
+    you only want to collect stats from games that have JSON data available
+    (as opposed to waiting for a 404 error from NFL.com).
+    """
+    infos = _search_schedule(year, week, home, away, kind, started)
+    if not infos:
+        return None
+    assert len(infos) == 1, 'More than one game matches the given criteria.'
+    return nflgame.game.Game(infos[0]['eid'])
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.standard_team">
+    <p>def <span class="ident">standard_team</span>(</p><p>team)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns a standard abbreviation when team corresponds to a team in
+nflgame.teams (case insensitive).  All known variants of a team name are
+searched. If no team is found, None is returned.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.standard_team', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.standard_team" class="source">
+    <pre><code>def standard_team(team):
+    """
+    Returns a standard abbreviation when team corresponds to a team in
+    nflgame.teams (case insensitive).  All known variants of a team name are
+    searched. If no team is found, None is returned.
+    """
+    team = team.lower()
+    for variants in teams:
+        for variant in variants:
+            if team == variant.lower():
+                return variants[0]
+    return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+
+
+    <h2 class="section-title" id="header-submodules">Sub-modules</h2>
+      <div class="item">
+      <p class="name"><a href="alert.m.html">nflgame.alert</a></p>
+      
+  
+    <div class="desc"><p>A module that provides convenience functions for sending alerts. Currently
+this includes sending text (SMS) messages or emails.</p>
+<p>This is accomplished through two mechanisms: Google Voice B{or} SMTP.</p>
+<h1>Using Google Voice</h1>
+<p>To use Google Voice, this module requires a Google Voice accou...</p></div>
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="game.m.html">nflgame.game</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="live.m.html">nflgame.live</a></p>
+      
+  
+    <div class="desc"><p>The live module provides a mechanism of periodically checking which games are
+being actively played.</p>
+<p>It requires the third party library pytz to be
+installed, which makes sure game times are compared properly with respect
+to time zones. pytz can be downloaded from PyPI:
+http://pypi.python.org/pypi/...</p></div>
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="player.m.html">nflgame.player</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="sched.m.html">nflgame.sched</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="seq.m.html">nflgame.seq</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="statmap.m.html">nflgame.statmap</a></p>
+      
+  
+    <div class="desc"><p>The stats module maps statistical category identifiers from NFL.com's
+GameCenter JSON feed to a representation of what we believe that statistical
+category means. This mapping has been reverse engineered with a lot of help
+from reddit users rasherdk and curien.</p>
+<p>B{Note}: We now have a data dictionar...</p></div>
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="update_players.m.html">nflgame.update_players</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="update_sched.m.html">nflgame.update_sched</a></p>
+      
+  
+
+      </div>
+      <div class="item">
+      <p class="name"><a href="version.m.html">nflgame.version</a></p>
+      
+  
+
+      </div>
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>

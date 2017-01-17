@@ -1,0 +1,2265 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>nflgame.update_players API documentation</title>
+    <meta name="description" content="" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#nflgame.update_players.PARSER">PARSER</a></li>
+    <li class="mono"><a href="#nflgame.update_players.urls">urls</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#nflgame.update_players.eprint">eprint</a></li>
+    <li class="mono"><a href="#nflgame.update_players.first_int">first_int</a></li>
+    <li class="mono"><a href="#nflgame.update_players.first_word">first_word</a></li>
+    <li class="mono"><a href="#nflgame.update_players.gsis_id">gsis_id</a></li>
+    <li class="mono"><a href="#nflgame.update_players.height_as_inches">height_as_inches</a></li>
+    <li class="mono"><a href="#nflgame.update_players.initial_mappings">initial_mappings</a></li>
+    <li class="mono"><a href="#nflgame.update_players.meta_from_profile_html">meta_from_profile_html</a></li>
+    <li class="mono"><a href="#nflgame.update_players.meta_from_soup_row">meta_from_soup_row</a></li>
+    <li class="mono"><a href="#nflgame.update_players.new_http">new_http</a></li>
+    <li class="mono"><a href="#nflgame.update_players.players_from_games">players_from_games</a></li>
+    <li class="mono"><a href="#nflgame.update_players.profile_id_from_url">profile_id_from_url</a></li>
+    <li class="mono"><a href="#nflgame.update_players.profile_url">profile_url</a></li>
+    <li class="mono"><a href="#nflgame.update_players.progress">progress</a></li>
+    <li class="mono"><a href="#nflgame.update_players.progress_done">progress_done</a></li>
+    <li class="mono"><a href="#nflgame.update_players.roster_soup">roster_soup</a></li>
+    <li class="mono"><a href="#nflgame.update_players.run">run</a></li>
+    <li class="mono"><a href="#nflgame.update_players.try_int">try_int</a></li>
+  </ul>
+
+    </li>
+
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">nflgame.update_players</span> module</h1>
+  
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players" class="source">
+    <pre><code># Here's an outline of how this program works.
+# Firstly, we load a dictionary mapping GSIS identifier to a dictionary of
+# player meta data. This comes from either the flag `json-update-file` or
+# nflgame's "players.json" file. We then build a reverse map from profile
+# identifier (included in player meta data) to GSIS identifier.
+#
+# We then look at all players who have participated in the last week of
+# play. Any player in this set that is not in the aforementioned mapping
+# has his GSIS identifier and name (e.g., `T.Brady`) added to a list of
+# players to update.
+#
+# (N.B. When the initial mappings are empty, then every player who recorded
+# a statistic since 2009 is added to this list.)
+#
+# For each player in the list to update, we need to obtain the profile
+# identifier. This is done by sending a single HEAD request to the
+# `gsis_profile` URL. The URL is a redirect to their canonical profile page,
+# with which we extract the profile id. We add this mapping to both of the
+# mappings discussed previously. (But note that the meta data in the GSIS
+# identifier mapping is incomplete.)
+#
+# We now fetch the roster lists for each of the 32 teams from NFL.com.
+# The roster list contains all relevant meta data *except* the GSIS identifier.
+# However, since we have a profile identifier for each player (which is
+# included in the roster list), we can connect player meta data with a
+# particular GSIS identifier. If we happen to see a player on the roster that
+# isn't in the mapping from profile identifier to GSIS identifier, then we need
+# to do a full GET request on that player's profile to retrieve the GSIS
+# identifier. (This occurs when a player has been added to a roster but hasn't
+# recorded any statistics. e.g., Rookies, benchwarmers or offensive linemen.)
+#
+# We overwrite the initial dictionary of player meta data for each player in
+# the roster data, including adding new entries for new players. We then save
+# the updated mapping from GSIS identifier to player meta data to disk as JSON.
+# (The JSON dump is sorted by key so that diffs are meaningful.)
+#
+# This approach requires a few thousand HEAD requests to NFL.com on the first
+# run. But after that, most runs will only require 32 requests for the roster
+# list (small potatoes) and perhaps a few HEAD/GET requests if there happens to
+# be a new player found.
+
+from __future__ import absolute_import, division, print_function
+import argparse
+import json
+import multiprocessing.pool
+import os
+import re
+import sys
+import traceback
+
+import httplib2
+
+from bs4 import BeautifulSoup
+
+try:
+    import lxml.html  # noqa
+    PARSER = 'lxml'
+except ImportError:
+    try:
+        import html5lib  # noqa
+        PARSER = 'html5lib'
+    except ImportError:
+        PARSER = 'html.parser'
+
+import nflgame
+import nflgame.live
+import nflgame.player
+
+urls = {
+    'roster': 'http://www.nfl.com/teams/roster?team=%s',
+    'gsis_profile': 'http://www.nfl.com/players/profile?id=%s',
+}
+
+
+def new_http():
+    http = httplib2.Http(timeout=10)
+    http.follow_redirects = True
+    return http
+
+
+def initial_mappings(conf):
+    metas, reverse = {}, {}
+    try:
+        with open(conf.json_update_file) as fp:
+            metas = json.load(fp)
+        for gsis_id, meta in metas.items():
+            reverse[meta['profile_id']] = gsis_id
+    except IOError as e:
+        eprint('Could not open "%s": %s' % (conf.json_update_file, e))
+    # Delete some keys in every entry. We do this to stay fresh.
+    # e.g., any player with "team" set should be actively on a roster.
+    for k in metas:
+        metas[k].pop('team', None)
+        metas[k].pop('status', None)
+        metas[k].pop('position', None)
+    return metas, reverse
+
+
+def profile_id_from_url(url):
+    if url is None:
+        return None
+    m = re.search('/([0-9]+)/', url)
+    return None if m is None else int(m.group(1))
+
+
+def profile_url(gsis_id):
+    resp, content = new_http().request(urls['gsis_profile'] % gsis_id, 'HEAD')
+    if resp['status'] != '301':
+        return None
+    loc = resp['location']
+    if not loc.startswith('http://'):
+        loc = 'http://www.nfl.com' + loc
+    return loc
+
+
+def gsis_id(profile_url):
+    resp, content = new_http().request(profile_url, 'GET')
+    if resp['status'] != '200':
+        return None
+    m = re.search('GSIS\s+ID:\s+([0-9-]+)', content)
+    if m is None:
+        return None
+    gid = m.group(1).strip()
+    if len(gid) != 10:  # Can't be valid...
+        return None
+    return gid
+
+
+def roster_soup(team):
+    resp, content = new_http().request(urls['roster'] % team, 'GET')
+    if resp['status'] != '200':
+        return None
+    return BeautifulSoup(content, PARSER)
+
+
+def try_int(s):
+    try:
+        return int(s)
+    except ValueError:
+        return 0
+
+
+def first_int(s):
+    m = re.search('[0-9]+', s)
+    if m is None:
+        return 0
+    return int(m.group(0))
+
+
+def first_word(s):
+    m = re.match('\S+', s)
+    if m is None:
+        return ''
+    return m.group(0)
+
+
+def height_as_inches(txt):
+    # Defaults to 0 if `txt` isn't parseable.
+    feet, inches = 0, 0
+    pieces = re.findall('[0-9]+', txt)
+    if len(pieces) >= 1:
+        feet = try_int(pieces[0])
+        if len(pieces) >= 2:
+            inches = try_int(pieces[1])
+    return feet * 12 + inches
+
+
+def meta_from_soup_row(team, soup_row):
+    tds, data = [], []
+    for td in soup_row.find_all('td'):
+        tds.append(td)
+        data.append(td.get_text().strip())
+    profile_url = 'http://www.nfl.com%s' % tds[1].a['href']
+
+    name = tds[1].a.get_text().strip()
+    if ',' not in name:
+        last_name, first_name = name, ''
+    else:
+        last_name, first_name = map(lambda s: s.strip(), name.split(','))
+
+    return {
+        'team': team,
+        'profile_id': profile_id_from_url(profile_url),
+        'profile_url': profile_url,
+        'number': try_int(data[0]),
+        'first_name': first_name,
+        'last_name': last_name,
+        'full_name': '%s %s' % (first_name, last_name),
+        'position': data[2],
+        'status': data[3],
+        'height': height_as_inches(data[4]),
+        'weight': first_int(data[5]),
+        'birthdate': data[6],
+        'years_pro': try_int(data[7]),
+        'college': data[8],
+    }
+
+
+def meta_from_profile_html(html):
+    if not html:
+        return html
+    try:
+        soup = BeautifulSoup(html, PARSER)
+        pinfo = soup.find(id='player-bio').find(class_='player-info')
+
+        # Get the full name and split it into first and last.
+        # Assume that if there are no spaces, then the name is the last name.
+        # Otherwise, all words except the last make up the first name.
+        # Is that right?
+        name = pinfo.find(class_='player-name').get_text().strip()
+        name_pieces = name.split(' ')
+        if len(name_pieces) == 1:
+            first, last = '', name
+        else:
+            first, last = ' '.join(name_pieces[0:-1]), name_pieces[-1]
+        meta = {
+            'first_name': first,
+            'last_name': last,
+            'full_name': name,
+        }
+
+        # The position is only in the <title>... Weird.
+        title = soup.find('title').get_text()
+        m = re.search(',\s+([A-Z]+)', title)
+        if m is not None:
+            meta['position'] = m.group(1)
+
+        # Look for a whole bunch of fields in the format "Field: Value".
+        search = pinfo.get_text()
+        fields = {'Height': 'height', 'Weight': 'weight', 'Born': 'birthdate',
+                  'College': 'college'}
+        for f, key in fields.items():
+            m = re.search('%s:\s+([\S ]+)' % f, search)
+            if m is not None:
+                meta[key] = m.group(1)
+                if key == 'height':
+                    meta[key] = height_as_inches(meta[key])
+                elif key == 'weight':
+                    meta[key] = first_int(meta[key])
+                elif key == 'birthdate':
+                    meta[key] = first_word(meta[key])
+
+        # Experience is a little weirder...
+        m = re.search('Experience:\s+([0-9]+)', search)
+        if m is not None:
+            meta['years_pro'] = int(m.group(1))
+
+        return meta
+    except AttributeError:
+        return None
+
+
+def players_from_games(existing, games):
+    for g in games:
+        if g is None:
+            continue
+        for d in g.drives:
+            for p in d.plays:
+                for player in p.players:
+                    if player.playerid not in existing:
+                        yield player.playerid, player.name
+
+
+def eprint(*args, **kwargs):
+    kwargs['file'] = sys.stderr
+    print(*args, **kwargs)
+
+
+def progress(cur, total):
+    ratio = 100 * (float(cur) / float(total))
+    eprint('\r%d/%d complete. (%0.2f%%)' % (cur, total, ratio), end='')
+
+
+def progress_done():
+    eprint('\nDone!')
+
+
+def run():
+    parser = argparse.ArgumentParser(
+        description='Efficiently download player meta data from NFL.com. Note '
+                    'that each invocation of this program guarantees at least '
+                    '32 HTTP requests to NFL.com',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    aa = parser.add_argument
+    aa('--json-update-file', type=str, default=None,
+       help='When set, the file provided will be updated in place with new '
+            'meta data from NFL.com. If this option is not set, then the '
+            '"players.json" file that comes with nflgame will be updated '
+            'instead.')
+    aa('--simultaneous-reqs', type=int, default=3,
+       help='The number of simultaneous HTTP requests sent to NFL.com at a '
+            'time. Set this lower if you are worried about hitting their '
+            'servers.')
+    aa('--full-scan', action='store_true',
+       help='Forces a full scan of nflgame player data since 2009. Typically, '
+            'this is only done when starting with a fresh JSON player '
+            'database. But it can be useful to re-scan all of the players if '
+            'past errors went ignored and data is missing. The advantage of '
+            'using this option over starting fresh is that an existing '
+            '(gsis_id <-> profile_id) mapping can be used for the majority of '
+            'players, instead of querying NFL.com for the mapping all over '
+            'again.')
+    aa('--no-block', action='store_true',
+       help='When set, this program will exit with an error instead of '
+            'displaying a prompt to continue. This is useful when calling '
+            'this program from another script. The idea here is not to block '
+            'indefinitely if something goes wrong and the program wants to '
+            'do a fresh update.')
+    aa('--phase', default=None, choices=['PRE', 'REG', 'POST'],
+       help='Force the update to use the given phase of the season.')
+    aa('--year', default=None, type=int,
+       help='Force the update to use nflgame players from a specific year.')
+    aa('--week', default=None, type=int,
+       help='Force the update to use nflgame players from a specific week.')
+    args = parser.parse_args()
+
+    if args.json_update_file is None:
+        args.json_update_file = nflgame.player._player_json_file
+    teams = [team[0] for team in nflgame.teams if team[0] != 'STL']
+    pool = multiprocessing.pool.ThreadPool(args.simultaneous_reqs)
+
+    # Before doing anything laborious, make sure we have write access to
+    # the JSON database.
+    if not os.access(args.json_update_file, os.W_OK):
+        eprint('I do not have write access to "%s".' % args.json_update_file)
+        eprint('Without write access, I cannot update the player database.')
+        sys.exit(1)
+
+    # Fetch the initial mapping of players.
+    metas, reverse = initial_mappings(args)
+    if len(metas) == 0:
+        if args.no_block:
+            eprint('I want to do a full update, but I have been told to\n'
+                   'exit instead of asking if you want to continue.')
+            sys.exit(1)
+
+        eprint("nflgame doesn't know about any players.")
+        eprint("Updating player data will require several thousand HTTP HEAD "
+               "requests to NFL.com.")
+        eprint("It is strongly recommended to find the 'players.json' file "
+               "that comes with nflgame.")
+        eprint("Are you sure you want to continue? [y/n] ", end='')
+        answer = raw_input()
+        if answer[0].lower() != 'y':
+            eprint("Quitting...")
+            sys.exit(1)
+
+    # Accumulate errors as we go. Dump them at the end.
+    errors = []
+
+    # Now fetch a set of players that aren't in our mapping already.
+    # Restrict the search to the current week if we have a non-empty mapping.
+    if len(metas) == 0 or args.full_scan:
+        eprint('Loading players in games since 2009, this may take a while...')
+        players = {}
+
+        # Grab players one game a time to avoid obscene memory requirements.
+        for _, schedule in nflgame.sched.games.itervalues():
+            # If the game is too far in the future, skip it...
+            if nflgame.live._game_datetime(schedule) > nflgame.live._now():
+                continue
+            g = nflgame.game.Game(schedule['eid'])
+            for pid, name in players_from_games(metas, [g]):
+                players[pid] = name
+        eprint('Done.')
+    else:
+        year, week = nflgame.live.current_year_and_week()
+        phase = nflgame.live._cur_season_phase
+        if args.phase is not None:
+            phase = args.phase
+        if args.year is not None:
+            year = args.year
+        if args.week is not None:
+            week = args.week
+
+        eprint('Loading games for %s %d week %d' % (phase, year, week))
+        games = nflgame.games(year, week, kind=phase)
+        players = dict(players_from_games(metas, games))
+
+    # Find the profile ID for each new player.
+    if len(players) > 0:
+        eprint('Finding (profile id -> gsis id) mapping for players...')
+
+        def fetch(t):  # t[0] is the gsis_id and t[1] is the gsis name
+            return t[0], t[1], profile_url(t[0])
+        for i, t in enumerate(pool.imap(fetch, players.items()), 1):
+            gid, name, purl = t
+            pid = profile_id_from_url(purl)
+
+            progress(i, len(players))
+            if purl is None or pid is None:
+                errors.append('Could not get profile URL for (%s, %s)'
+                              % (gid, name))
+                continue
+
+            assert gid not in metas
+            metas[gid] = {'gsis_id': gid, 'gsis_name': name,
+                          'profile_url': purl, 'profile_id': pid}
+            reverse[pid] = gid
+        progress_done()
+
+    # Get the soup for each team roster.
+    eprint('Downloading team rosters...')
+    roster = []
+
+    def fetch(team):
+        return team, roster_soup(team)
+    for i, (team, soup) in enumerate(pool.imap(fetch, teams), 1):
+        progress(i, len(teams))
+
+        if soup is None:
+            errors.append('Could not get roster for team %s' % team)
+            continue
+
+        tbodys = soup.find(id='result').find_all('tbody')
+
+        for row in tbodys[len(tbodys)-1].find_all('tr'):
+            try:
+                roster.append(meta_from_soup_row(team, row))
+            except Exception:
+                errors.append(
+                    'Could not get player info from roster row:\n\n%s\n\n'
+                    'Exception:\n\n%s\n\n'
+                    % (row, traceback.format_exc()))
+    progress_done()
+
+    # Find the gsis identifiers for players that are in the roster but haven't
+    # recorded a statistic yet. (i.e., Not in nflgame play data.)
+    purls = [r['profile_url']
+             for r in roster if r['profile_id'] not in reverse]
+    if len(purls) > 0:
+        eprint('Fetching GSIS identifiers for players not in nflgame...')
+
+        def fetch(purl):
+            return purl, gsis_id(purl)
+        for i, (purl, gid) in enumerate(pool.imap(fetch, purls), 1):
+            progress(i, len(purls))
+
+            if gid is None:
+                errors.append('Could not get GSIS id at %s' % purl)
+                continue
+            reverse[profile_id_from_url(purl)] = gid
+        progress_done()
+
+    # Now merge the data from `rosters` into `metas` by using `reverse` to
+    # establish the correspondence.
+    for data in roster:
+        gsisid = reverse.get(data['profile_id'], None)
+        if gsisid is None:
+            errors.append('Could not find gsis_id for %s' % data)
+            continue
+        merged = dict(metas.get(gsisid, {}), **data)
+        merged['gsis_id'] = gsisid
+        metas[gsisid] = merged
+
+    # Finally, try to scrape meta data for players who aren't on a roster
+    # but have recorded a statistic in nflgame.
+    gids = [(gid, meta['profile_url'])
+            for gid, meta in metas.iteritems()
+            if 'full_name' not in meta and 'profile_url' in meta]
+    if len(gids):
+        eprint('Fetching meta data for players not on a roster...')
+
+        def fetch(t):
+            gid, purl = t
+            resp, content = new_http().request(purl, 'GET')
+            if resp['status'] != '200':
+                if resp['status'] == '404':
+                    return gid, purl, False
+                else:
+                    return gid, purl, None
+            return gid, purl, content
+        for i, (gid, purl, html) in enumerate(pool.imap(fetch, gids), 1):
+            progress(i, len(gids))
+            more_meta = meta_from_profile_html(html)
+            if not more_meta:
+                # If more_meta is False, then it was a 404. Not our problem.
+                if more_meta is None:
+                    errors.append('Could not fetch HTML for %s' % purl)
+                continue
+            metas[gid] = dict(metas[gid], **more_meta)
+        progress_done()
+
+    assert len(metas) > 0, "Have no players to add... ???"
+    with open(args.json_update_file, 'w+') as fp:
+        json.dump(metas, fp, indent=4, sort_keys=True,
+                  separators=(',', ': '))
+
+    if len(errors) > 0:
+        eprint('\n')
+        eprint('There were some errors during the download. Usually this is a')
+        eprint('result of an HTTP request timing out, which means the')
+        eprint('resulting "players.json" file is probably missing some data.')
+        eprint('An appropriate solution is to re-run the script until there')
+        eprint('are no more errors (or when the errors are problems on ')
+        eprint('NFL.com side.)')
+        eprint('-' * 79)
+        eprint(('\n' + ('-' * 79) + '\n').join(errors))
+
+if __name__ == '__main__':
+    run()
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+    <h2 class="section-title" id="header-variables">Module variables</h2>
+      <div class="item">
+      <p id="nflgame.update_players.PARSER" class="name">var <span class="ident">PARSER</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="nflgame.update_players.urls" class="name">var <span class="ident">urls</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.eprint">
+    <p>def <span class="ident">eprint</span>(</p><p>*args, **kwargs)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.eprint', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.eprint" class="source">
+    <pre><code>def eprint(*args, **kwargs):
+    kwargs['file'] = sys.stderr
+    print(*args, **kwargs)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.first_int">
+    <p>def <span class="ident">first_int</span>(</p><p>s)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.first_int', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.first_int" class="source">
+    <pre><code>def first_int(s):
+    m = re.search('[0-9]+', s)
+    if m is None:
+        return 0
+    return int(m.group(0))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.first_word">
+    <p>def <span class="ident">first_word</span>(</p><p>s)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.first_word', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.first_word" class="source">
+    <pre><code>def first_word(s):
+    m = re.match('\S+', s)
+    if m is None:
+        return ''
+    return m.group(0)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.gsis_id">
+    <p>def <span class="ident">gsis_id</span>(</p><p>profile_url)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.gsis_id', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.gsis_id" class="source">
+    <pre><code>def gsis_id(profile_url):
+    resp, content = new_http().request(profile_url, 'GET')
+    if resp['status'] != '200':
+        return None
+    m = re.search('GSIS\s+ID:\s+([0-9-]+)', content)
+    if m is None:
+        return None
+    gid = m.group(1).strip()
+    if len(gid) != 10:  # Can't be valid...
+        return None
+    return gid
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.height_as_inches">
+    <p>def <span class="ident">height_as_inches</span>(</p><p>txt)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.height_as_inches', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.height_as_inches" class="source">
+    <pre><code>def height_as_inches(txt):
+    # Defaults to 0 if `txt` isn't parseable.
+    feet, inches = 0, 0
+    pieces = re.findall('[0-9]+', txt)
+    if len(pieces) >= 1:
+        feet = try_int(pieces[0])
+        if len(pieces) >= 2:
+            inches = try_int(pieces[1])
+    return feet * 12 + inches
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.initial_mappings">
+    <p>def <span class="ident">initial_mappings</span>(</p><p>conf)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.initial_mappings', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.initial_mappings" class="source">
+    <pre><code>def initial_mappings(conf):
+    metas, reverse = {}, {}
+    try:
+        with open(conf.json_update_file) as fp:
+            metas = json.load(fp)
+        for gsis_id, meta in metas.items():
+            reverse[meta['profile_id']] = gsis_id
+    except IOError as e:
+        eprint('Could not open "%s": %s' % (conf.json_update_file, e))
+    # Delete some keys in every entry. We do this to stay fresh.
+    # e.g., any player with "team" set should be actively on a roster.
+    for k in metas:
+        metas[k].pop('team', None)
+        metas[k].pop('status', None)
+        metas[k].pop('position', None)
+    return metas, reverse
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.meta_from_profile_html">
+    <p>def <span class="ident">meta_from_profile_html</span>(</p><p>html)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.meta_from_profile_html', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.meta_from_profile_html" class="source">
+    <pre><code>def meta_from_profile_html(html):
+    if not html:
+        return html
+    try:
+        soup = BeautifulSoup(html, PARSER)
+        pinfo = soup.find(id='player-bio').find(class_='player-info')
+
+        # Get the full name and split it into first and last.
+        # Assume that if there are no spaces, then the name is the last name.
+        # Otherwise, all words except the last make up the first name.
+        # Is that right?
+        name = pinfo.find(class_='player-name').get_text().strip()
+        name_pieces = name.split(' ')
+        if len(name_pieces) == 1:
+            first, last = '', name
+        else:
+            first, last = ' '.join(name_pieces[0:-1]), name_pieces[-1]
+        meta = {
+            'first_name': first,
+            'last_name': last,
+            'full_name': name,
+        }
+
+        # The position is only in the <title>... Weird.
+        title = soup.find('title').get_text()
+        m = re.search(',\s+([A-Z]+)', title)
+        if m is not None:
+            meta['position'] = m.group(1)
+
+        # Look for a whole bunch of fields in the format "Field: Value".
+        search = pinfo.get_text()
+        fields = {'Height': 'height', 'Weight': 'weight', 'Born': 'birthdate',
+                  'College': 'college'}
+        for f, key in fields.items():
+            m = re.search('%s:\s+([\S ]+)' % f, search)
+            if m is not None:
+                meta[key] = m.group(1)
+                if key == 'height':
+                    meta[key] = height_as_inches(meta[key])
+                elif key == 'weight':
+                    meta[key] = first_int(meta[key])
+                elif key == 'birthdate':
+                    meta[key] = first_word(meta[key])
+
+        # Experience is a little weirder...
+        m = re.search('Experience:\s+([0-9]+)', search)
+        if m is not None:
+            meta['years_pro'] = int(m.group(1))
+
+        return meta
+    except AttributeError:
+        return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.meta_from_soup_row">
+    <p>def <span class="ident">meta_from_soup_row</span>(</p><p>team, soup_row)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.meta_from_soup_row', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.meta_from_soup_row" class="source">
+    <pre><code>def meta_from_soup_row(team, soup_row):
+    tds, data = [], []
+    for td in soup_row.find_all('td'):
+        tds.append(td)
+        data.append(td.get_text().strip())
+    profile_url = 'http://www.nfl.com%s' % tds[1].a['href']
+
+    name = tds[1].a.get_text().strip()
+    if ',' not in name:
+        last_name, first_name = name, ''
+    else:
+        last_name, first_name = map(lambda s: s.strip(), name.split(','))
+
+    return {
+        'team': team,
+        'profile_id': profile_id_from_url(profile_url),
+        'profile_url': profile_url,
+        'number': try_int(data[0]),
+        'first_name': first_name,
+        'last_name': last_name,
+        'full_name': '%s %s' % (first_name, last_name),
+        'position': data[2],
+        'status': data[3],
+        'height': height_as_inches(data[4]),
+        'weight': first_int(data[5]),
+        'birthdate': data[6],
+        'years_pro': try_int(data[7]),
+        'college': data[8],
+    }
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.new_http">
+    <p>def <span class="ident">new_http</span>(</p><p>)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.new_http', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.new_http" class="source">
+    <pre><code>def new_http():
+    http = httplib2.Http(timeout=10)
+    http.follow_redirects = True
+    return http
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.players_from_games">
+    <p>def <span class="ident">players_from_games</span>(</p><p>existing, games)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.players_from_games', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.players_from_games" class="source">
+    <pre><code>def players_from_games(existing, games):
+    for g in games:
+        if g is None:
+            continue
+        for d in g.drives:
+            for p in d.plays:
+                for player in p.players:
+                    if player.playerid not in existing:
+                        yield player.playerid, player.name
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.profile_id_from_url">
+    <p>def <span class="ident">profile_id_from_url</span>(</p><p>url)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.profile_id_from_url', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.profile_id_from_url" class="source">
+    <pre><code>def profile_id_from_url(url):
+    if url is None:
+        return None
+    m = re.search('/([0-9]+)/', url)
+    return None if m is None else int(m.group(1))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.profile_url">
+    <p>def <span class="ident">profile_url</span>(</p><p>gsis_id)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.profile_url', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.profile_url" class="source">
+    <pre><code>def profile_url(gsis_id):
+    resp, content = new_http().request(urls['gsis_profile'] % gsis_id, 'HEAD')
+    if resp['status'] != '301':
+        return None
+    loc = resp['location']
+    if not loc.startswith('http://'):
+        loc = 'http://www.nfl.com' + loc
+    return loc
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.progress">
+    <p>def <span class="ident">progress</span>(</p><p>cur, total)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.progress', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.progress" class="source">
+    <pre><code>def progress(cur, total):
+    ratio = 100 * (float(cur) / float(total))
+    eprint('\r%d/%d complete. (%0.2f%%)' % (cur, total, ratio), end='')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.progress_done">
+    <p>def <span class="ident">progress_done</span>(</p><p>)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.progress_done', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.progress_done" class="source">
+    <pre><code>def progress_done():
+    eprint('\nDone!')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.roster_soup">
+    <p>def <span class="ident">roster_soup</span>(</p><p>team)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.roster_soup', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.roster_soup" class="source">
+    <pre><code>def roster_soup(team):
+    resp, content = new_http().request(urls['roster'] % team, 'GET')
+    if resp['status'] != '200':
+        return None
+    return BeautifulSoup(content, PARSER)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.run">
+    <p>def <span class="ident">run</span>(</p><p>)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.run', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.run" class="source">
+    <pre><code>def run():
+    parser = argparse.ArgumentParser(
+        description='Efficiently download player meta data from NFL.com. Note '
+                    'that each invocation of this program guarantees at least '
+                    '32 HTTP requests to NFL.com',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    aa = parser.add_argument
+    aa('--json-update-file', type=str, default=None,
+       help='When set, the file provided will be updated in place with new '
+            'meta data from NFL.com. If this option is not set, then the '
+            '"players.json" file that comes with nflgame will be updated '
+            'instead.')
+    aa('--simultaneous-reqs', type=int, default=3,
+       help='The number of simultaneous HTTP requests sent to NFL.com at a '
+            'time. Set this lower if you are worried about hitting their '
+            'servers.')
+    aa('--full-scan', action='store_true',
+       help='Forces a full scan of nflgame player data since 2009. Typically, '
+            'this is only done when starting with a fresh JSON player '
+            'database. But it can be useful to re-scan all of the players if '
+            'past errors went ignored and data is missing. The advantage of '
+            'using this option over starting fresh is that an existing '
+            '(gsis_id <-> profile_id) mapping can be used for the majority of '
+            'players, instead of querying NFL.com for the mapping all over '
+            'again.')
+    aa('--no-block', action='store_true',
+       help='When set, this program will exit with an error instead of '
+            'displaying a prompt to continue. This is useful when calling '
+            'this program from another script. The idea here is not to block '
+            'indefinitely if something goes wrong and the program wants to '
+            'do a fresh update.')
+    aa('--phase', default=None, choices=['PRE', 'REG', 'POST'],
+       help='Force the update to use the given phase of the season.')
+    aa('--year', default=None, type=int,
+       help='Force the update to use nflgame players from a specific year.')
+    aa('--week', default=None, type=int,
+       help='Force the update to use nflgame players from a specific week.')
+    args = parser.parse_args()
+
+    if args.json_update_file is None:
+        args.json_update_file = nflgame.player._player_json_file
+    teams = [team[0] for team in nflgame.teams if team[0] != 'STL']
+    pool = multiprocessing.pool.ThreadPool(args.simultaneous_reqs)
+
+    # Before doing anything laborious, make sure we have write access to
+    # the JSON database.
+    if not os.access(args.json_update_file, os.W_OK):
+        eprint('I do not have write access to "%s".' % args.json_update_file)
+        eprint('Without write access, I cannot update the player database.')
+        sys.exit(1)
+
+    # Fetch the initial mapping of players.
+    metas, reverse = initial_mappings(args)
+    if len(metas) == 0:
+        if args.no_block:
+            eprint('I want to do a full update, but I have been told to\n'
+                   'exit instead of asking if you want to continue.')
+            sys.exit(1)
+
+        eprint("nflgame doesn't know about any players.")
+        eprint("Updating player data will require several thousand HTTP HEAD "
+               "requests to NFL.com.")
+        eprint("It is strongly recommended to find the 'players.json' file "
+               "that comes with nflgame.")
+        eprint("Are you sure you want to continue? [y/n] ", end='')
+        answer = raw_input()
+        if answer[0].lower() != 'y':
+            eprint("Quitting...")
+            sys.exit(1)
+
+    # Accumulate errors as we go. Dump them at the end.
+    errors = []
+
+    # Now fetch a set of players that aren't in our mapping already.
+    # Restrict the search to the current week if we have a non-empty mapping.
+    if len(metas) == 0 or args.full_scan:
+        eprint('Loading players in games since 2009, this may take a while...')
+        players = {}
+
+        # Grab players one game a time to avoid obscene memory requirements.
+        for _, schedule in nflgame.sched.games.itervalues():
+            # If the game is too far in the future, skip it...
+            if nflgame.live._game_datetime(schedule) > nflgame.live._now():
+                continue
+            g = nflgame.game.Game(schedule['eid'])
+            for pid, name in players_from_games(metas, [g]):
+                players[pid] = name
+        eprint('Done.')
+    else:
+        year, week = nflgame.live.current_year_and_week()
+        phase = nflgame.live._cur_season_phase
+        if args.phase is not None:
+            phase = args.phase
+        if args.year is not None:
+            year = args.year
+        if args.week is not None:
+            week = args.week
+
+        eprint('Loading games for %s %d week %d' % (phase, year, week))
+        games = nflgame.games(year, week, kind=phase)
+        players = dict(players_from_games(metas, games))
+
+    # Find the profile ID for each new player.
+    if len(players) > 0:
+        eprint('Finding (profile id -> gsis id) mapping for players...')
+
+        def fetch(t):  # t[0] is the gsis_id and t[1] is the gsis name
+            return t[0], t[1], profile_url(t[0])
+        for i, t in enumerate(pool.imap(fetch, players.items()), 1):
+            gid, name, purl = t
+            pid = profile_id_from_url(purl)
+
+            progress(i, len(players))
+            if purl is None or pid is None:
+                errors.append('Could not get profile URL for (%s, %s)'
+                              % (gid, name))
+                continue
+
+            assert gid not in metas
+            metas[gid] = {'gsis_id': gid, 'gsis_name': name,
+                          'profile_url': purl, 'profile_id': pid}
+            reverse[pid] = gid
+        progress_done()
+
+    # Get the soup for each team roster.
+    eprint('Downloading team rosters...')
+    roster = []
+
+    def fetch(team):
+        return team, roster_soup(team)
+    for i, (team, soup) in enumerate(pool.imap(fetch, teams), 1):
+        progress(i, len(teams))
+
+        if soup is None:
+            errors.append('Could not get roster for team %s' % team)
+            continue
+
+        tbodys = soup.find(id='result').find_all('tbody')
+
+        for row in tbodys[len(tbodys)-1].find_all('tr'):
+            try:
+                roster.append(meta_from_soup_row(team, row))
+            except Exception:
+                errors.append(
+                    'Could not get player info from roster row:\n\n%s\n\n'
+                    'Exception:\n\n%s\n\n'
+                    % (row, traceback.format_exc()))
+    progress_done()
+
+    # Find the gsis identifiers for players that are in the roster but haven't
+    # recorded a statistic yet. (i.e., Not in nflgame play data.)
+    purls = [r['profile_url']
+             for r in roster if r['profile_id'] not in reverse]
+    if len(purls) > 0:
+        eprint('Fetching GSIS identifiers for players not in nflgame...')
+
+        def fetch(purl):
+            return purl, gsis_id(purl)
+        for i, (purl, gid) in enumerate(pool.imap(fetch, purls), 1):
+            progress(i, len(purls))
+
+            if gid is None:
+                errors.append('Could not get GSIS id at %s' % purl)
+                continue
+            reverse[profile_id_from_url(purl)] = gid
+        progress_done()
+
+    # Now merge the data from `rosters` into `metas` by using `reverse` to
+    # establish the correspondence.
+    for data in roster:
+        gsisid = reverse.get(data['profile_id'], None)
+        if gsisid is None:
+            errors.append('Could not find gsis_id for %s' % data)
+            continue
+        merged = dict(metas.get(gsisid, {}), **data)
+        merged['gsis_id'] = gsisid
+        metas[gsisid] = merged
+
+    # Finally, try to scrape meta data for players who aren't on a roster
+    # but have recorded a statistic in nflgame.
+    gids = [(gid, meta['profile_url'])
+            for gid, meta in metas.iteritems()
+            if 'full_name' not in meta and 'profile_url' in meta]
+    if len(gids):
+        eprint('Fetching meta data for players not on a roster...')
+
+        def fetch(t):
+            gid, purl = t
+            resp, content = new_http().request(purl, 'GET')
+            if resp['status'] != '200':
+                if resp['status'] == '404':
+                    return gid, purl, False
+                else:
+                    return gid, purl, None
+            return gid, purl, content
+        for i, (gid, purl, html) in enumerate(pool.imap(fetch, gids), 1):
+            progress(i, len(gids))
+            more_meta = meta_from_profile_html(html)
+            if not more_meta:
+                # If more_meta is False, then it was a 404. Not our problem.
+                if more_meta is None:
+                    errors.append('Could not fetch HTML for %s' % purl)
+                continue
+            metas[gid] = dict(metas[gid], **more_meta)
+        progress_done()
+
+    assert len(metas) > 0, "Have no players to add... ???"
+    with open(args.json_update_file, 'w+') as fp:
+        json.dump(metas, fp, indent=4, sort_keys=True,
+                  separators=(',', ': '))
+
+    if len(errors) > 0:
+        eprint('\n')
+        eprint('There were some errors during the download. Usually this is a')
+        eprint('result of an HTTP request timing out, which means the')
+        eprint('resulting "players.json" file is probably missing some data.')
+        eprint('An appropriate solution is to re-run the script until there')
+        eprint('are no more errors (or when the errors are problems on ')
+        eprint('NFL.com side.)')
+        eprint('-' * 79)
+        eprint(('\n' + ('-' * 79) + '\n').join(errors))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="nflgame.update_players.try_int">
+    <p>def <span class="ident">try_int</span>(</p><p>s)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.update_players.try_int', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.update_players.try_int" class="source">
+    <pre><code>def try_int(s):
+    try:
+        return int(s)
+    except ValueError:
+        return 0
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,3088 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>nflgame.seq API documentation</title>
+    <meta name="description" content="" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#nflgame.seq.Gen">Gen</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#nflgame.seq.Gen.__init__">__init__</a></li>
+    <li class="mono"><a href="#nflgame.seq.Gen.filter">filter</a></li>
+    <li class="mono"><a href="#nflgame.seq.Gen.limit">limit</a></li>
+    <li class="mono"><a href="#nflgame.seq.Gen.sort">sort</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#nflgame.seq.GenDrives">GenDrives</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.__init__">__init__</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.filter">filter</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.limit">limit</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.number">number</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.players">players</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.plays">plays</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenDrives.sort">sort</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#nflgame.seq.GenPlayerStats">GenPlayerStats</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.__init__">__init__</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.csv">csv</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.defense">defense</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.filter">filter</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.fumbles">fumbles</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.kicking">kicking</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.kickret">kickret</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.limit">limit</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.name">name</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.passing">passing</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.penalty">penalty</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.playerid">playerid</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.punting">punting</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.puntret">puntret</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.receiving">receiving</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.rushing">rushing</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.sort">sort</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlayerStats.touchdowns">touchdowns</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#nflgame.seq.GenPlays">GenPlays</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#nflgame.seq.GenPlays.__init__">__init__</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlays.filter">filter</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlays.limit">limit</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlays.players">players</a></li>
+    <li class="mono"><a href="#nflgame.seq.GenPlays.sort">sort</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">nflgame.seq</span> module</h1>
+  
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq" class="source">
+    <pre><code>import functools
+import itertools
+import operator
+
+from nflgame import OrderedDict
+from nflgame import statmap
+
+_BUILTIN_PREDS = {
+    '__lt': operator.lt,
+    '__le': operator.le,
+    '__ne': operator.ne,
+    '__ge': operator.ge,
+    '__gt': operator.gt,
+}
+"""
+A dictionary of suffixes to predicates that can be used in Gen.filter.
+The suffix corresponds to what to add to the end of a field name to invoke
+the predicate it corresponds to. For example, this::
+
+    players.filter(receiving_rec=lambda v: v > 0)
+
+Is equivalent to::
+
+    players.filter(receiving_rec__gt=0)
+
+(Django users should feel right at home.)
+"""
+
+
+class Gen (object):
+    """
+    Players implements a sequence type and provides a convenient API for
+    searching sets of players.
+    """
+
+    def __init__(self, iterable):
+        """
+        Creates a new Players sequence from an iterable where each element
+        of the iterable is an instance of the Player class.
+        """
+        self.__iter = iterable
+
+    def filter(self, **kwargs):
+        """
+        filters the sequence based on a set of criteria. Parameter
+        names should be equivalent to the properties accessible in the items
+        of the sequence. For example, where the items are instances of
+        the Stats class::
+
+            players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x>0)
+
+        Returns a sequence with only players on the home team that
+        have a single passing touchdown and more than zero rushing yards.
+
+        If a field specified does not exist for a particular item, that
+        item is excluded from the result set.
+
+        If a field is set to a value, then only items with fields that equal
+        that value are returned.
+
+        If a field is set to a function---which must be a predicate---then
+        only items with field values satisfying that function will
+        be returned.
+
+        Also, special suffixes that begin with '__' may be added to the
+        end of a field name to invoke built in predicates.
+        For example, this::
+
+            players.filter(receiving_rec=lambda v: v > 0)
+
+        Is equivalent to::
+
+            players.filter(receiving_rec__gt=0)
+
+        Other suffixes includes gt, le, lt, ne, ge, etc.
+
+        (Django users should feel right at home.)
+        """
+        preds = []
+        for k, v in kwargs.iteritems():
+            def pred(field, value, item):
+                for suffix, p in _BUILTIN_PREDS.iteritems():
+                    if field.endswith(suffix):
+                        f = field[:field.index(suffix)]
+                        if not hasattr(item, f) or getattr(item, f) is None:
+                            return False
+                        return p(getattr(item, f), value)
+                if not hasattr(item, field) or getattr(item, field) is None:
+                    return False
+                if isinstance(value, type(lambda x: x)):
+                    return value(getattr(item, field))
+                return getattr(item, field) == value
+            preds.append(functools.partial(pred, k, v))
+
+        gen = itertools.ifilter(lambda item: all([f(item) for f in preds]),
+                                self)
+        return self.__class__(gen)
+
+    def limit(self, n):
+        """
+        Limit the sequence to N items.
+        """
+        return self.__class__(itertools.islice(self, n))
+
+    def sort(self, field, descending=True):
+        """
+        sorts the sequence according to the field specified---where field is
+        a property on an item in the sequence. If descending is false, items
+        will be sorted in order from least to greatest.
+
+        Note that if field does not exist in any item being sorted, a
+        KeyError will be raised.
+        """
+        def attrget(item):
+            return getattr(item, field, 0)
+
+        return self.__class__(sorted(self, reverse=descending, key=attrget))
+
+    def __str__(self):
+        """Returns a list of items in the sequence."""
+        return '[%s]' % ', '.join([str(item) for item in self])
+
+    def __iter__(self):
+        """Make this an iterable sequence."""
+        if self.__iter is None:
+            return iter([])
+        if isinstance(self.__iter, OrderedDict):
+            return self.__iter.itervalues()
+        return iter(self.__iter)
+
+    def __reversed__(self):
+        """Satisfy the built in reversed."""
+        return reversed(self.__iter)
+
+
+class GenDrives (Gen):
+    """
+    GenDrives implements a sequence type and provides a convenient API
+    for searching drives.
+    """
+    def plays(self):
+        """
+        Returns all of the plays, in order, belonging to every drive in
+        the sequence.
+        """
+        return GenPlays(itertools.chain(*map(lambda d: d.plays, self)))
+
+    def players(self):
+        """
+        Returns the combined player stats for every player that participated
+        in any of the drives in the sequence.
+        """
+        return self.plays().players()
+
+    def number(self, n, team=None):
+        """
+        Gets the Nth drive where the first drive corresponds to n=1. This is
+        only useful given a complete collection of drives for an entire game.
+
+        If the team parameter is specified (i.e., team='NE'), then n will
+        be interpreted as *that* team's Nth drive.
+        """
+        assert n > 0
+        n -= 1
+        if team is None:
+            return list(self)[n]
+        else:
+            i = 0
+            for d in self:
+                if d.team == team:
+                    if i == n:
+                        return d
+                    i += 1
+            assert False, \
+                'Could not find drive %d for team %s.' % (n + 1, team)
+
+
+class GenPlays (Gen):
+    """
+    GenPlays implements a sequence type and provides a convenient API
+    for searching plays.
+    """
+    def players(self):
+        """
+        Returns the combined player stats for every play in the sequence.
+        """
+        players = OrderedDict()
+        for play in self:
+            for player in play.players:
+                if player.playerid not in players:
+                    players[player.playerid] = player
+                else:
+                    players[player.playerid] += player
+        return GenPlayerStats(players)
+
+
+class GenPlayerStats (Gen):
+    """
+    GenPlayerStats implements a sequence type and provides a convenient API for
+    searching sets of player statistics.
+    """
+    def name(self, name):
+        """
+        Returns a single player whose name equals `name`. If no such player
+        can be found, None is returned.
+
+        Note that NFL GameCenter formats their names like "T.Brady" and
+        "W.Welker". Thus, `name` should also be in this format.
+        """
+        for p in self:
+            if p.name == name:
+                return p
+        return None
+
+    def playerid(self, playerid):
+        """
+        Returns a single player whose NFL GameCenter identifier equals
+        `playerid`. This probably isn't too useful, unless you're trying
+        to do ID mapping. (Players have different identifiers across NFL.com.)
+
+        If no such player with the given identifier is found, None is
+        returned.
+        """
+        for p in self:
+            if p.playerid == playerid:
+                return p
+        return None
+
+    def touchdowns(self):
+        """
+        touchdowns is a convenience method for returning a Players
+        sequence of all players with at least one touchdown.
+        """
+        def gen():
+            for p in self:
+                for f in p.__dict__:
+                    if f.endswith('tds') and p.__dict__[f] > 0:
+                        yield p
+                        break
+        return self.__class__(gen())
+
+    def __filter_category(self, cat):
+        return self.__class__(itertools.ifilter(lambda p: p.has_cat(cat),
+                                                self))
+
+    def passing(self):
+        """Returns players that have a "passing" statistical category."""
+        return self.__filter_category('passing')
+
+    def rushing(self):
+        """Returns players that have a "rushing" statistical category."""
+        return self.__filter_category('rushing')
+
+    def receiving(self):
+        """Returns players that have a "receiving" statistical category."""
+        return self.__filter_category('receiving')
+
+    def fumbles(self):
+        """Returns players that have a "fumbles" statistical category."""
+        return self.__filter_category('fumbles')
+
+    def kicking(self):
+        """Returns players that have a "kicking" statistical category."""
+        return self.__filter_category('kicking')
+
+    def punting(self):
+        """Returns players that have a "punting" statistical category."""
+        return self.__filter_category('punting')
+
+    def kickret(self):
+        """Returns players that have a "kickret" statistical category."""
+        return self.__filter_category('kickret')
+
+    def puntret(self):
+        """Returns players that have a "puntret" statistical category."""
+        return self.__filter_category('puntret')
+
+    def defense(self):
+        """Returns players that have a "defense" statistical category."""
+        return self.__filter_category('defense')
+
+    def penalty(self):
+        """Returns players that have a "penalty" statistical category."""
+        return self.__filter_category('penalty')
+
+    def csv(self, fileName, allfields=False):
+        """
+        Given a file-name fileName, csv will write the contents of
+        the Players sequence to fileName formatted as comma-separated values.
+        The resulting file can then be opened directly with programs like
+        Excel, Google Docs, Libre Office and Open Office.
+
+        Note that since each player in a Players sequence may have differing
+        statistical categories (like a quarterback and a receiver), the
+        minimum constraining set of statisical categories is used as the
+        header row for the resulting CSV file. This behavior can be changed
+        by setting 'allfields' to True, which will use every available field
+        in the header.
+        """
+        import csv
+
+        fields, rows = set([]), []
+        players = list(self)
+        for p in players:
+            for field, stat in p.stats.iteritems():
+                fields.add(field)
+        if allfields:
+            for statId, info in statmap.idmap.iteritems():
+                for field in info['fields']:
+                    fields.add(field)
+        fields = sorted(list(fields))
+
+        for p in players:
+            d = {
+                'name': p.name,
+                'id': p.playerid,
+                'home': p.home and 'yes' or 'no',
+                'team': p.team,
+                'pos': 'N/A',
+            }
+            if p.player is not None:
+                d['pos'] = p.player.position
+
+            for field in fields:
+                if field in p.__dict__:
+                    d[field] = p.__dict__[field]
+                else:
+                    d[field] = ""
+            rows.append(d)
+
+        fieldNames = ["name", "id", "home", "team", "pos"] + fields
+        rows = [dict((f, f) for f in fieldNames)] + rows
+        csv.DictWriter(open(fileName, 'wb+'), fieldNames).writerows(rows)
+
+    def __add__(self, other):
+        """
+        Adds two sequences of players by combining repeat players and summing
+        their statistics.
+        """
+        players = OrderedDict()
+        for p in itertools.chain(self, other):
+            if p.playerid not in players:
+                players[p.playerid] = p
+            else:
+                players[p.playerid] += p
+        return GenPlayerStats(players)
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="nflgame.seq.Gen" class="name">class <span class="ident">Gen</span></p>
+      
+  
+    <div class="desc"><p>Players implements a sequence type and provides a convenient API for
+searching sets of players.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.Gen', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.Gen" class="source">
+    <pre><code>class Gen (object):
+    """
+    Players implements a sequence type and provides a convenient API for
+    searching sets of players.
+    """
+
+    def __init__(self, iterable):
+        """
+        Creates a new Players sequence from an iterable where each element
+        of the iterable is an instance of the Player class.
+        """
+        self.__iter = iterable
+
+    def filter(self, **kwargs):
+        """
+        filters the sequence based on a set of criteria. Parameter
+        names should be equivalent to the properties accessible in the items
+        of the sequence. For example, where the items are instances of
+        the Stats class::
+
+            players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x>0)
+
+        Returns a sequence with only players on the home team that
+        have a single passing touchdown and more than zero rushing yards.
+
+        If a field specified does not exist for a particular item, that
+        item is excluded from the result set.
+
+        If a field is set to a value, then only items with fields that equal
+        that value are returned.
+
+        If a field is set to a function---which must be a predicate---then
+        only items with field values satisfying that function will
+        be returned.
+
+        Also, special suffixes that begin with '__' may be added to the
+        end of a field name to invoke built in predicates.
+        For example, this::
+
+            players.filter(receiving_rec=lambda v: v > 0)
+
+        Is equivalent to::
+
+            players.filter(receiving_rec__gt=0)
+
+        Other suffixes includes gt, le, lt, ne, ge, etc.
+
+        (Django users should feel right at home.)
+        """
+        preds = []
+        for k, v in kwargs.iteritems():
+            def pred(field, value, item):
+                for suffix, p in _BUILTIN_PREDS.iteritems():
+                    if field.endswith(suffix):
+                        f = field[:field.index(suffix)]
+                        if not hasattr(item, f) or getattr(item, f) is None:
+                            return False
+                        return p(getattr(item, f), value)
+                if not hasattr(item, field) or getattr(item, field) is None:
+                    return False
+                if isinstance(value, type(lambda x: x)):
+                    return value(getattr(item, field))
+                return getattr(item, field) == value
+            preds.append(functools.partial(pred, k, v))
+
+        gen = itertools.ifilter(lambda item: all([f(item) for f in preds]),
+                                self)
+        return self.__class__(gen)
+
+    def limit(self, n):
+        """
+        Limit the sequence to N items.
+        """
+        return self.__class__(itertools.islice(self, n))
+
+    def sort(self, field, descending=True):
+        """
+        sorts the sequence according to the field specified---where field is
+        a property on an item in the sequence. If descending is false, items
+        will be sorted in order from least to greatest.
+
+        Note that if field does not exist in any item being sorted, a
+        KeyError will be raised.
+        """
+        def attrget(item):
+            return getattr(item, field, 0)
+
+        return self.__class__(sorted(self, reverse=descending, key=attrget))
+
+    def __str__(self):
+        """Returns a list of items in the sequence."""
+        return '[%s]' % ', '.join([str(item) for item in self])
+
+    def __iter__(self):
+        """Make this an iterable sequence."""
+        if self.__iter is None:
+            return iter([])
+        if isinstance(self.__iter, OrderedDict):
+            return self.__iter.itervalues()
+        return iter(self.__iter)
+
+    def __reversed__(self):
+        """Satisfy the built in reversed."""
+        return reversed(self.__iter)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#nflgame.seq.Gen">Gen</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.Gen.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, iterable)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Creates a new Players sequence from an iterable where each element
+of the iterable is an instance of the Player class.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.Gen.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.Gen.__init__" class="source">
+    <pre><code>def __init__(self, iterable):
+    """
+    Creates a new Players sequence from an iterable where each element
+    of the iterable is an instance of the Player class.
+    """
+    self.__iter = iterable
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.Gen.filter">
+    <p>def <span class="ident">filter</span>(</p><p>self, **kwargs)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>filters the sequence based on a set of criteria. Parameter
+names should be equivalent to the properties accessible in the items
+of the sequence. For example, where the items are instances of
+the Stats class::</p>
+<pre><code>players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x&gt;0)
+</code></pre>
+<p>Returns a sequence with only players on the home team that
+have a single passing touchdown and more than zero rushing yards.</p>
+<p>If a field specified does not exist for a particular item, that
+item is excluded from the result set.</p>
+<p>If a field is set to a value, then only items with fields that equal
+that value are returned.</p>
+<p>If a field is set to a function---which must be a predicate---then
+only items with field values satisfying that function will
+be returned.</p>
+<p>Also, special suffixes that begin with '__' may be added to the
+end of a field name to invoke built in predicates.
+For example, this::</p>
+<pre><code>players.filter(receiving_rec=lambda v: v &gt; 0)
+</code></pre>
+<p>Is equivalent to::</p>
+<pre><code>players.filter(receiving_rec__gt=0)
+</code></pre>
+<p>Other suffixes includes gt, le, lt, ne, ge, etc.</p>
+<p>(Django users should feel right at home.)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.Gen.filter', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.Gen.filter" class="source">
+    <pre><code>def filter(self, **kwargs):
+    """
+    filters the sequence based on a set of criteria. Parameter
+    names should be equivalent to the properties accessible in the items
+    of the sequence. For example, where the items are instances of
+    the Stats class::
+        players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x>0)
+    Returns a sequence with only players on the home team that
+    have a single passing touchdown and more than zero rushing yards.
+    If a field specified does not exist for a particular item, that
+    item is excluded from the result set.
+    If a field is set to a value, then only items with fields that equal
+    that value are returned.
+    If a field is set to a function---which must be a predicate---then
+    only items with field values satisfying that function will
+    be returned.
+    Also, special suffixes that begin with '__' may be added to the
+    end of a field name to invoke built in predicates.
+    For example, this::
+        players.filter(receiving_rec=lambda v: v > 0)
+    Is equivalent to::
+        players.filter(receiving_rec__gt=0)
+    Other suffixes includes gt, le, lt, ne, ge, etc.
+    (Django users should feel right at home.)
+    """
+    preds = []
+    for k, v in kwargs.iteritems():
+        def pred(field, value, item):
+            for suffix, p in _BUILTIN_PREDS.iteritems():
+                if field.endswith(suffix):
+                    f = field[:field.index(suffix)]
+                    if not hasattr(item, f) or getattr(item, f) is None:
+                        return False
+                    return p(getattr(item, f), value)
+            if not hasattr(item, field) or getattr(item, field) is None:
+                return False
+            if isinstance(value, type(lambda x: x)):
+                return value(getattr(item, field))
+            return getattr(item, field) == value
+        preds.append(functools.partial(pred, k, v))
+    gen = itertools.ifilter(lambda item: all([f(item) for f in preds]),
+                            self)
+    return self.__class__(gen)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.Gen.limit">
+    <p>def <span class="ident">limit</span>(</p><p>self, n)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Limit the sequence to N items.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.Gen.limit', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.Gen.limit" class="source">
+    <pre><code>def limit(self, n):
+    """
+    Limit the sequence to N items.
+    """
+    return self.__class__(itertools.islice(self, n))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.Gen.sort">
+    <p>def <span class="ident">sort</span>(</p><p>self, field, descending=True)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>sorts the sequence according to the field specified---where field is
+a property on an item in the sequence. If descending is false, items
+will be sorted in order from least to greatest.</p>
+<p>Note that if field does not exist in any item being sorted, a
+KeyError will be raised.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.Gen.sort', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.Gen.sort" class="source">
+    <pre><code>def sort(self, field, descending=True):
+    """
+    sorts the sequence according to the field specified---where field is
+    a property on an item in the sequence. If descending is false, items
+    will be sorted in order from least to greatest.
+    Note that if field does not exist in any item being sorted, a
+    KeyError will be raised.
+    """
+    def attrget(item):
+        return getattr(item, field, 0)
+    return self.__class__(sorted(self, reverse=descending, key=attrget))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="nflgame.seq.GenDrives" class="name">class <span class="ident">GenDrives</span></p>
+      
+  
+    <div class="desc"><p>GenDrives implements a sequence type and provides a convenient API
+for searching drives.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives" class="source">
+    <pre><code>class GenDrives (Gen):
+    """
+    GenDrives implements a sequence type and provides a convenient API
+    for searching drives.
+    """
+    def plays(self):
+        """
+        Returns all of the plays, in order, belonging to every drive in
+        the sequence.
+        """
+        return GenPlays(itertools.chain(*map(lambda d: d.plays, self)))
+
+    def players(self):
+        """
+        Returns the combined player stats for every player that participated
+        in any of the drives in the sequence.
+        """
+        return self.plays().players()
+
+    def number(self, n, team=None):
+        """
+        Gets the Nth drive where the first drive corresponds to n=1. This is
+        only useful given a complete collection of drives for an entire game.
+
+        If the team parameter is specified (i.e., team='NE'), then n will
+        be interpreted as *that* team's Nth drive.
+        """
+        assert n > 0
+        n -= 1
+        if team is None:
+            return list(self)[n]
+        else:
+            i = 0
+            for d in self:
+                if d.team == team:
+                    if i == n:
+                        return d
+                    i += 1
+            assert False, \
+                'Could not find drive %d for team %s.' % (n + 1, team)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#nflgame.seq.GenDrives">GenDrives</a></li>
+          <li><a href="#nflgame.seq.Gen">Gen</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, iterable)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.__init__">__init__</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Creates a new Players sequence from an iterable where each element
+of the iterable is an instance of the Player class.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.__init__" class="source">
+    <pre><code>def __init__(self, iterable):
+    """
+    Creates a new Players sequence from an iterable where each element
+    of the iterable is an instance of the Player class.
+    """
+    self.__iter = iterable
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.filter">
+    <p>def <span class="ident">filter</span>(</p><p>self, **kwargs)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.filter">filter</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>filters the sequence based on a set of criteria. Parameter
+names should be equivalent to the properties accessible in the items
+of the sequence. For example, where the items are instances of
+the Stats class::</p>
+<pre><code>players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x&gt;0)
+</code></pre>
+<p>Returns a sequence with only players on the home team that
+have a single passing touchdown and more than zero rushing yards.</p>
+<p>If a field specified does not exist for a particular item, that
+item is excluded from the result set.</p>
+<p>If a field is set to a value, then only items with fields that equal
+that value are returned.</p>
+<p>If a field is set to a function---which must be a predicate---then
+only items with field values satisfying that function will
+be returned.</p>
+<p>Also, special suffixes that begin with '__' may be added to the
+end of a field name to invoke built in predicates.
+For example, this::</p>
+<pre><code>players.filter(receiving_rec=lambda v: v &gt; 0)
+</code></pre>
+<p>Is equivalent to::</p>
+<pre><code>players.filter(receiving_rec__gt=0)
+</code></pre>
+<p>Other suffixes includes gt, le, lt, ne, ge, etc.</p>
+<p>(Django users should feel right at home.)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.filter', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.filter" class="source">
+    <pre><code>def filter(self, **kwargs):
+    """
+    filters the sequence based on a set of criteria. Parameter
+    names should be equivalent to the properties accessible in the items
+    of the sequence. For example, where the items are instances of
+    the Stats class::
+        players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x>0)
+    Returns a sequence with only players on the home team that
+    have a single passing touchdown and more than zero rushing yards.
+    If a field specified does not exist for a particular item, that
+    item is excluded from the result set.
+    If a field is set to a value, then only items with fields that equal
+    that value are returned.
+    If a field is set to a function---which must be a predicate---then
+    only items with field values satisfying that function will
+    be returned.
+    Also, special suffixes that begin with '__' may be added to the
+    end of a field name to invoke built in predicates.
+    For example, this::
+        players.filter(receiving_rec=lambda v: v > 0)
+    Is equivalent to::
+        players.filter(receiving_rec__gt=0)
+    Other suffixes includes gt, le, lt, ne, ge, etc.
+    (Django users should feel right at home.)
+    """
+    preds = []
+    for k, v in kwargs.iteritems():
+        def pred(field, value, item):
+            for suffix, p in _BUILTIN_PREDS.iteritems():
+                if field.endswith(suffix):
+                    f = field[:field.index(suffix)]
+                    if not hasattr(item, f) or getattr(item, f) is None:
+                        return False
+                    return p(getattr(item, f), value)
+            if not hasattr(item, field) or getattr(item, field) is None:
+                return False
+            if isinstance(value, type(lambda x: x)):
+                return value(getattr(item, field))
+            return getattr(item, field) == value
+        preds.append(functools.partial(pred, k, v))
+    gen = itertools.ifilter(lambda item: all([f(item) for f in preds]),
+                            self)
+    return self.__class__(gen)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.limit">
+    <p>def <span class="ident">limit</span>(</p><p>self, n)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.limit">limit</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Limit the sequence to N items.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.limit', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.limit" class="source">
+    <pre><code>def limit(self, n):
+    """
+    Limit the sequence to N items.
+    """
+    return self.__class__(itertools.islice(self, n))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.number">
+    <p>def <span class="ident">number</span>(</p><p>self, n, team=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Gets the Nth drive where the first drive corresponds to n=1. This is
+only useful given a complete collection of drives for an entire game.</p>
+<p>If the team parameter is specified (i.e., team='NE'), then n will
+be interpreted as <em>that</em> team's Nth drive.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.number', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.number" class="source">
+    <pre><code>def number(self, n, team=None):
+    """
+    Gets the Nth drive where the first drive corresponds to n=1. This is
+    only useful given a complete collection of drives for an entire game.
+    If the team parameter is specified (i.e., team='NE'), then n will
+    be interpreted as *that* team's Nth drive.
+    """
+    assert n > 0
+    n -= 1
+    if team is None:
+        return list(self)[n]
+    else:
+        i = 0
+        for d in self:
+            if d.team == team:
+                if i == n:
+                    return d
+                i += 1
+        assert False, \
+            'Could not find drive %d for team %s.' % (n + 1, team)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.players">
+    <p>def <span class="ident">players</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the combined player stats for every player that participated
+in any of the drives in the sequence.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.players', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.players" class="source">
+    <pre><code>def players(self):
+    """
+    Returns the combined player stats for every player that participated
+    in any of the drives in the sequence.
+    """
+    return self.plays().players()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.plays">
+    <p>def <span class="ident">plays</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns all of the plays, in order, belonging to every drive in
+the sequence.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.plays', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.plays" class="source">
+    <pre><code>def plays(self):
+    """
+    Returns all of the plays, in order, belonging to every drive in
+    the sequence.
+    """
+    return GenPlays(itertools.chain(*map(lambda d: d.plays, self)))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenDrives.sort">
+    <p>def <span class="ident">sort</span>(</p><p>self, field, descending=True)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.sort">sort</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>sorts the sequence according to the field specified---where field is
+a property on an item in the sequence. If descending is false, items
+will be sorted in order from least to greatest.</p>
+<p>Note that if field does not exist in any item being sorted, a
+KeyError will be raised.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenDrives.sort', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenDrives.sort" class="source">
+    <pre><code>def sort(self, field, descending=True):
+    """
+    sorts the sequence according to the field specified---where field is
+    a property on an item in the sequence. If descending is false, items
+    will be sorted in order from least to greatest.
+    Note that if field does not exist in any item being sorted, a
+    KeyError will be raised.
+    """
+    def attrget(item):
+        return getattr(item, field, 0)
+    return self.__class__(sorted(self, reverse=descending, key=attrget))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="nflgame.seq.GenPlayerStats" class="name">class <span class="ident">GenPlayerStats</span></p>
+      
+  
+    <div class="desc"><p>GenPlayerStats implements a sequence type and provides a convenient API for
+searching sets of player statistics.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats" class="source">
+    <pre><code>class GenPlayerStats (Gen):
+    """
+    GenPlayerStats implements a sequence type and provides a convenient API for
+    searching sets of player statistics.
+    """
+    def name(self, name):
+        """
+        Returns a single player whose name equals `name`. If no such player
+        can be found, None is returned.
+
+        Note that NFL GameCenter formats their names like "T.Brady" and
+        "W.Welker". Thus, `name` should also be in this format.
+        """
+        for p in self:
+            if p.name == name:
+                return p
+        return None
+
+    def playerid(self, playerid):
+        """
+        Returns a single player whose NFL GameCenter identifier equals
+        `playerid`. This probably isn't too useful, unless you're trying
+        to do ID mapping. (Players have different identifiers across NFL.com.)
+
+        If no such player with the given identifier is found, None is
+        returned.
+        """
+        for p in self:
+            if p.playerid == playerid:
+                return p
+        return None
+
+    def touchdowns(self):
+        """
+        touchdowns is a convenience method for returning a Players
+        sequence of all players with at least one touchdown.
+        """
+        def gen():
+            for p in self:
+                for f in p.__dict__:
+                    if f.endswith('tds') and p.__dict__[f] > 0:
+                        yield p
+                        break
+        return self.__class__(gen())
+
+    def __filter_category(self, cat):
+        return self.__class__(itertools.ifilter(lambda p: p.has_cat(cat),
+                                                self))
+
+    def passing(self):
+        """Returns players that have a "passing" statistical category."""
+        return self.__filter_category('passing')
+
+    def rushing(self):
+        """Returns players that have a "rushing" statistical category."""
+        return self.__filter_category('rushing')
+
+    def receiving(self):
+        """Returns players that have a "receiving" statistical category."""
+        return self.__filter_category('receiving')
+
+    def fumbles(self):
+        """Returns players that have a "fumbles" statistical category."""
+        return self.__filter_category('fumbles')
+
+    def kicking(self):
+        """Returns players that have a "kicking" statistical category."""
+        return self.__filter_category('kicking')
+
+    def punting(self):
+        """Returns players that have a "punting" statistical category."""
+        return self.__filter_category('punting')
+
+    def kickret(self):
+        """Returns players that have a "kickret" statistical category."""
+        return self.__filter_category('kickret')
+
+    def puntret(self):
+        """Returns players that have a "puntret" statistical category."""
+        return self.__filter_category('puntret')
+
+    def defense(self):
+        """Returns players that have a "defense" statistical category."""
+        return self.__filter_category('defense')
+
+    def penalty(self):
+        """Returns players that have a "penalty" statistical category."""
+        return self.__filter_category('penalty')
+
+    def csv(self, fileName, allfields=False):
+        """
+        Given a file-name fileName, csv will write the contents of
+        the Players sequence to fileName formatted as comma-separated values.
+        The resulting file can then be opened directly with programs like
+        Excel, Google Docs, Libre Office and Open Office.
+
+        Note that since each player in a Players sequence may have differing
+        statistical categories (like a quarterback and a receiver), the
+        minimum constraining set of statisical categories is used as the
+        header row for the resulting CSV file. This behavior can be changed
+        by setting 'allfields' to True, which will use every available field
+        in the header.
+        """
+        import csv
+
+        fields, rows = set([]), []
+        players = list(self)
+        for p in players:
+            for field, stat in p.stats.iteritems():
+                fields.add(field)
+        if allfields:
+            for statId, info in statmap.idmap.iteritems():
+                for field in info['fields']:
+                    fields.add(field)
+        fields = sorted(list(fields))
+
+        for p in players:
+            d = {
+                'name': p.name,
+                'id': p.playerid,
+                'home': p.home and 'yes' or 'no',
+                'team': p.team,
+                'pos': 'N/A',
+            }
+            if p.player is not None:
+                d['pos'] = p.player.position
+
+            for field in fields:
+                if field in p.__dict__:
+                    d[field] = p.__dict__[field]
+                else:
+                    d[field] = ""
+            rows.append(d)
+
+        fieldNames = ["name", "id", "home", "team", "pos"] + fields
+        rows = [dict((f, f) for f in fieldNames)] + rows
+        csv.DictWriter(open(fileName, 'wb+'), fieldNames).writerows(rows)
+
+    def __add__(self, other):
+        """
+        Adds two sequences of players by combining repeat players and summing
+        their statistics.
+        """
+        players = OrderedDict()
+        for p in itertools.chain(self, other):
+            if p.playerid not in players:
+                players[p.playerid] = p
+            else:
+                players[p.playerid] += p
+        return GenPlayerStats(players)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#nflgame.seq.GenPlayerStats">GenPlayerStats</a></li>
+          <li><a href="#nflgame.seq.Gen">Gen</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, iterable)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.__init__">__init__</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Creates a new Players sequence from an iterable where each element
+of the iterable is an instance of the Player class.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.__init__" class="source">
+    <pre><code>def __init__(self, iterable):
+    """
+    Creates a new Players sequence from an iterable where each element
+    of the iterable is an instance of the Player class.
+    """
+    self.__iter = iterable
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.csv">
+    <p>def <span class="ident">csv</span>(</p><p>self, fileName, allfields=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Given a file-name fileName, csv will write the contents of
+the Players sequence to fileName formatted as comma-separated values.
+The resulting file can then be opened directly with programs like
+Excel, Google Docs, Libre Office and Open Office.</p>
+<p>Note that since each player in a Players sequence may have differing
+statistical categories (like a quarterback and a receiver), the
+minimum constraining set of statisical categories is used as the
+header row for the resulting CSV file. This behavior can be changed
+by setting 'allfields' to True, which will use every available field
+in the header.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.csv', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.csv" class="source">
+    <pre><code>def csv(self, fileName, allfields=False):
+    """
+    Given a file-name fileName, csv will write the contents of
+    the Players sequence to fileName formatted as comma-separated values.
+    The resulting file can then be opened directly with programs like
+    Excel, Google Docs, Libre Office and Open Office.
+    Note that since each player in a Players sequence may have differing
+    statistical categories (like a quarterback and a receiver), the
+    minimum constraining set of statisical categories is used as the
+    header row for the resulting CSV file. This behavior can be changed
+    by setting 'allfields' to True, which will use every available field
+    in the header.
+    """
+    import csv
+    fields, rows = set([]), []
+    players = list(self)
+    for p in players:
+        for field, stat in p.stats.iteritems():
+            fields.add(field)
+    if allfields:
+        for statId, info in statmap.idmap.iteritems():
+            for field in info['fields']:
+                fields.add(field)
+    fields = sorted(list(fields))
+    for p in players:
+        d = {
+            'name': p.name,
+            'id': p.playerid,
+            'home': p.home and 'yes' or 'no',
+            'team': p.team,
+            'pos': 'N/A',
+        }
+        if p.player is not None:
+            d['pos'] = p.player.position
+        for field in fields:
+            if field in p.__dict__:
+                d[field] = p.__dict__[field]
+            else:
+                d[field] = ""
+        rows.append(d)
+    fieldNames = ["name", "id", "home", "team", "pos"] + fields
+    rows = [dict((f, f) for f in fieldNames)] + rows
+    csv.DictWriter(open(fileName, 'wb+'), fieldNames).writerows(rows)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.defense">
+    <p>def <span class="ident">defense</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "defense" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.defense', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.defense" class="source">
+    <pre><code>def defense(self):
+    """Returns players that have a "defense" statistical category."""
+    return self.__filter_category('defense')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.filter">
+    <p>def <span class="ident">filter</span>(</p><p>self, **kwargs)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.filter">filter</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>filters the sequence based on a set of criteria. Parameter
+names should be equivalent to the properties accessible in the items
+of the sequence. For example, where the items are instances of
+the Stats class::</p>
+<pre><code>players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x&gt;0)
+</code></pre>
+<p>Returns a sequence with only players on the home team that
+have a single passing touchdown and more than zero rushing yards.</p>
+<p>If a field specified does not exist for a particular item, that
+item is excluded from the result set.</p>
+<p>If a field is set to a value, then only items with fields that equal
+that value are returned.</p>
+<p>If a field is set to a function---which must be a predicate---then
+only items with field values satisfying that function will
+be returned.</p>
+<p>Also, special suffixes that begin with '__' may be added to the
+end of a field name to invoke built in predicates.
+For example, this::</p>
+<pre><code>players.filter(receiving_rec=lambda v: v &gt; 0)
+</code></pre>
+<p>Is equivalent to::</p>
+<pre><code>players.filter(receiving_rec__gt=0)
+</code></pre>
+<p>Other suffixes includes gt, le, lt, ne, ge, etc.</p>
+<p>(Django users should feel right at home.)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.filter', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.filter" class="source">
+    <pre><code>def filter(self, **kwargs):
+    """
+    filters the sequence based on a set of criteria. Parameter
+    names should be equivalent to the properties accessible in the items
+    of the sequence. For example, where the items are instances of
+    the Stats class::
+        players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x>0)
+    Returns a sequence with only players on the home team that
+    have a single passing touchdown and more than zero rushing yards.
+    If a field specified does not exist for a particular item, that
+    item is excluded from the result set.
+    If a field is set to a value, then only items with fields that equal
+    that value are returned.
+    If a field is set to a function---which must be a predicate---then
+    only items with field values satisfying that function will
+    be returned.
+    Also, special suffixes that begin with '__' may be added to the
+    end of a field name to invoke built in predicates.
+    For example, this::
+        players.filter(receiving_rec=lambda v: v > 0)
+    Is equivalent to::
+        players.filter(receiving_rec__gt=0)
+    Other suffixes includes gt, le, lt, ne, ge, etc.
+    (Django users should feel right at home.)
+    """
+    preds = []
+    for k, v in kwargs.iteritems():
+        def pred(field, value, item):
+            for suffix, p in _BUILTIN_PREDS.iteritems():
+                if field.endswith(suffix):
+                    f = field[:field.index(suffix)]
+                    if not hasattr(item, f) or getattr(item, f) is None:
+                        return False
+                    return p(getattr(item, f), value)
+            if not hasattr(item, field) or getattr(item, field) is None:
+                return False
+            if isinstance(value, type(lambda x: x)):
+                return value(getattr(item, field))
+            return getattr(item, field) == value
+        preds.append(functools.partial(pred, k, v))
+    gen = itertools.ifilter(lambda item: all([f(item) for f in preds]),
+                            self)
+    return self.__class__(gen)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.fumbles">
+    <p>def <span class="ident">fumbles</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "fumbles" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.fumbles', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.fumbles" class="source">
+    <pre><code>def fumbles(self):
+    """Returns players that have a "fumbles" statistical category."""
+    return self.__filter_category('fumbles')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.kicking">
+    <p>def <span class="ident">kicking</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "kicking" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.kicking', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.kicking" class="source">
+    <pre><code>def kicking(self):
+    """Returns players that have a "kicking" statistical category."""
+    return self.__filter_category('kicking')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.kickret">
+    <p>def <span class="ident">kickret</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "kickret" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.kickret', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.kickret" class="source">
+    <pre><code>def kickret(self):
+    """Returns players that have a "kickret" statistical category."""
+    return self.__filter_category('kickret')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.limit">
+    <p>def <span class="ident">limit</span>(</p><p>self, n)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.limit">limit</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Limit the sequence to N items.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.limit', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.limit" class="source">
+    <pre><code>def limit(self, n):
+    """
+    Limit the sequence to N items.
+    """
+    return self.__class__(itertools.islice(self, n))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.name">
+    <p>def <span class="ident">name</span>(</p><p>self, name)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns a single player whose name equals <code>name</code>. If no such player
+can be found, None is returned.</p>
+<p>Note that NFL GameCenter formats their names like "T.Brady" and
+"W.Welker". Thus, <code>name</code> should also be in this format.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.name', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.name" class="source">
+    <pre><code>def name(self, name):
+    """
+    Returns a single player whose name equals `name`. If no such player
+    can be found, None is returned.
+    Note that NFL GameCenter formats their names like "T.Brady" and
+    "W.Welker". Thus, `name` should also be in this format.
+    """
+    for p in self:
+        if p.name == name:
+            return p
+    return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.passing">
+    <p>def <span class="ident">passing</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "passing" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.passing', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.passing" class="source">
+    <pre><code>def passing(self):
+    """Returns players that have a "passing" statistical category."""
+    return self.__filter_category('passing')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.penalty">
+    <p>def <span class="ident">penalty</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "penalty" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.penalty', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.penalty" class="source">
+    <pre><code>def penalty(self):
+    """Returns players that have a "penalty" statistical category."""
+    return self.__filter_category('penalty')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.playerid">
+    <p>def <span class="ident">playerid</span>(</p><p>self, playerid)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns a single player whose NFL GameCenter identifier equals
+<code>playerid</code>. This probably isn't too useful, unless you're trying
+to do ID mapping. (Players have different identifiers across NFL.com.)</p>
+<p>If no such player with the given identifier is found, None is
+returned.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.playerid', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.playerid" class="source">
+    <pre><code>def playerid(self, playerid):
+    """
+    Returns a single player whose NFL GameCenter identifier equals
+    `playerid`. This probably isn't too useful, unless you're trying
+    to do ID mapping. (Players have different identifiers across NFL.com.)
+    If no such player with the given identifier is found, None is
+    returned.
+    """
+    for p in self:
+        if p.playerid == playerid:
+            return p
+    return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.punting">
+    <p>def <span class="ident">punting</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "punting" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.punting', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.punting" class="source">
+    <pre><code>def punting(self):
+    """Returns players that have a "punting" statistical category."""
+    return self.__filter_category('punting')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.puntret">
+    <p>def <span class="ident">puntret</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "puntret" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.puntret', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.puntret" class="source">
+    <pre><code>def puntret(self):
+    """Returns players that have a "puntret" statistical category."""
+    return self.__filter_category('puntret')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.receiving">
+    <p>def <span class="ident">receiving</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "receiving" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.receiving', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.receiving" class="source">
+    <pre><code>def receiving(self):
+    """Returns players that have a "receiving" statistical category."""
+    return self.__filter_category('receiving')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.rushing">
+    <p>def <span class="ident">rushing</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns players that have a "rushing" statistical category.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.rushing', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.rushing" class="source">
+    <pre><code>def rushing(self):
+    """Returns players that have a "rushing" statistical category."""
+    return self.__filter_category('rushing')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.sort">
+    <p>def <span class="ident">sort</span>(</p><p>self, field, descending=True)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.sort">sort</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>sorts the sequence according to the field specified---where field is
+a property on an item in the sequence. If descending is false, items
+will be sorted in order from least to greatest.</p>
+<p>Note that if field does not exist in any item being sorted, a
+KeyError will be raised.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.sort', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.sort" class="source">
+    <pre><code>def sort(self, field, descending=True):
+    """
+    sorts the sequence according to the field specified---where field is
+    a property on an item in the sequence. If descending is false, items
+    will be sorted in order from least to greatest.
+    Note that if field does not exist in any item being sorted, a
+    KeyError will be raised.
+    """
+    def attrget(item):
+        return getattr(item, field, 0)
+    return self.__class__(sorted(self, reverse=descending, key=attrget))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlayerStats.touchdowns">
+    <p>def <span class="ident">touchdowns</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>touchdowns is a convenience method for returning a Players
+sequence of all players with at least one touchdown.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlayerStats.touchdowns', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlayerStats.touchdowns" class="source">
+    <pre><code>def touchdowns(self):
+    """
+    touchdowns is a convenience method for returning a Players
+    sequence of all players with at least one touchdown.
+    """
+    def gen():
+        for p in self:
+            for f in p.__dict__:
+                if f.endswith('tds') and p.__dict__[f] > 0:
+                    yield p
+                    break
+    return self.__class__(gen())
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="nflgame.seq.GenPlays" class="name">class <span class="ident">GenPlays</span></p>
+      
+  
+    <div class="desc"><p>GenPlays implements a sequence type and provides a convenient API
+for searching plays.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlays', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlays" class="source">
+    <pre><code>class GenPlays (Gen):
+    """
+    GenPlays implements a sequence type and provides a convenient API
+    for searching plays.
+    """
+    def players(self):
+        """
+        Returns the combined player stats for every play in the sequence.
+        """
+        players = OrderedDict()
+        for play in self:
+            for player in play.players:
+                if player.playerid not in players:
+                    players[player.playerid] = player
+                else:
+                    players[player.playerid] += player
+        return GenPlayerStats(players)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#nflgame.seq.GenPlays">GenPlays</a></li>
+          <li><a href="#nflgame.seq.Gen">Gen</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlays.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, iterable)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.__init__">__init__</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Creates a new Players sequence from an iterable where each element
+of the iterable is an instance of the Player class.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlays.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlays.__init__" class="source">
+    <pre><code>def __init__(self, iterable):
+    """
+    Creates a new Players sequence from an iterable where each element
+    of the iterable is an instance of the Player class.
+    """
+    self.__iter = iterable
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlays.filter">
+    <p>def <span class="ident">filter</span>(</p><p>self, **kwargs)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.filter">filter</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>filters the sequence based on a set of criteria. Parameter
+names should be equivalent to the properties accessible in the items
+of the sequence. For example, where the items are instances of
+the Stats class::</p>
+<pre><code>players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x&gt;0)
+</code></pre>
+<p>Returns a sequence with only players on the home team that
+have a single passing touchdown and more than zero rushing yards.</p>
+<p>If a field specified does not exist for a particular item, that
+item is excluded from the result set.</p>
+<p>If a field is set to a value, then only items with fields that equal
+that value are returned.</p>
+<p>If a field is set to a function---which must be a predicate---then
+only items with field values satisfying that function will
+be returned.</p>
+<p>Also, special suffixes that begin with '__' may be added to the
+end of a field name to invoke built in predicates.
+For example, this::</p>
+<pre><code>players.filter(receiving_rec=lambda v: v &gt; 0)
+</code></pre>
+<p>Is equivalent to::</p>
+<pre><code>players.filter(receiving_rec__gt=0)
+</code></pre>
+<p>Other suffixes includes gt, le, lt, ne, ge, etc.</p>
+<p>(Django users should feel right at home.)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlays.filter', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlays.filter" class="source">
+    <pre><code>def filter(self, **kwargs):
+    """
+    filters the sequence based on a set of criteria. Parameter
+    names should be equivalent to the properties accessible in the items
+    of the sequence. For example, where the items are instances of
+    the Stats class::
+        players.filter(home=True, passing_tds=1, rushing_yds=lambda x: x>0)
+    Returns a sequence with only players on the home team that
+    have a single passing touchdown and more than zero rushing yards.
+    If a field specified does not exist for a particular item, that
+    item is excluded from the result set.
+    If a field is set to a value, then only items with fields that equal
+    that value are returned.
+    If a field is set to a function---which must be a predicate---then
+    only items with field values satisfying that function will
+    be returned.
+    Also, special suffixes that begin with '__' may be added to the
+    end of a field name to invoke built in predicates.
+    For example, this::
+        players.filter(receiving_rec=lambda v: v > 0)
+    Is equivalent to::
+        players.filter(receiving_rec__gt=0)
+    Other suffixes includes gt, le, lt, ne, ge, etc.
+    (Django users should feel right at home.)
+    """
+    preds = []
+    for k, v in kwargs.iteritems():
+        def pred(field, value, item):
+            for suffix, p in _BUILTIN_PREDS.iteritems():
+                if field.endswith(suffix):
+                    f = field[:field.index(suffix)]
+                    if not hasattr(item, f) or getattr(item, f) is None:
+                        return False
+                    return p(getattr(item, f), value)
+            if not hasattr(item, field) or getattr(item, field) is None:
+                return False
+            if isinstance(value, type(lambda x: x)):
+                return value(getattr(item, field))
+            return getattr(item, field) == value
+        preds.append(functools.partial(pred, k, v))
+    gen = itertools.ifilter(lambda item: all([f(item) for f in preds]),
+                            self)
+    return self.__class__(gen)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlays.limit">
+    <p>def <span class="ident">limit</span>(</p><p>self, n)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.limit">limit</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Limit the sequence to N items.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlays.limit', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlays.limit" class="source">
+    <pre><code>def limit(self, n):
+    """
+    Limit the sequence to N items.
+    """
+    return self.__class__(itertools.islice(self, n))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlays.players">
+    <p>def <span class="ident">players</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the combined player stats for every play in the sequence.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlays.players', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlays.players" class="source">
+    <pre><code>def players(self):
+    """
+    Returns the combined player stats for every play in the sequence.
+    """
+    players = OrderedDict()
+    for play in self:
+        for player in play.players:
+            if player.playerid not in players:
+                players[player.playerid] = player
+            else:
+                players[player.playerid] += player
+    return GenPlayerStats(players)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="nflgame.seq.GenPlays.sort">
+    <p>def <span class="ident">sort</span>(</p><p>self, field, descending=True)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="#nflgame.seq.Gen">Gen</a></code>.<code><a href="#nflgame.seq.Gen.sort">sort</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>sorts the sequence according to the field specified---where field is
+a property on an item in the sequence. If descending is false, items
+will be sorted in order from least to greatest.</p>
+<p>Note that if field does not exist in any item being sorted, a
+KeyError will be raised.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-nflgame.seq.GenPlays.sort', this);">Show source &equiv;</a></p>
+  <div id="source-nflgame.seq.GenPlays.sort" class="source">
+    <pre><code>def sort(self, field, descending=True):
+    """
+    sorts the sequence according to the field specified---where field is
+    a property on an item in the sequence. If descending is false, items
+    will be sorted in order from least to greatest.
+    Note that if field does not exist in any item being sorted, a
+    KeyError will be raised.
+    """
+    def attrget(item):
+        return getattr(item, field, 0)
+    return self.__class__(sorted(self, reverse=descending, key=attrget))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>
